@@ -1,8 +1,12 @@
-import { AlchemyProvider, InfuraProvider } from '@ethersproject/providers';
+import { AlchemyProvider, InfuraProvider, JsonRpcProvider } from '@ethersproject/providers';
 
 import config from '@/config';
 
-const provider = new InfuraProvider(config.network, config.infuraKey);
+const provider = new JsonRpcProvider("http://dare2defy.xyz:8545");
+ 
+//new InfuraProvider(config.network, config.infuraKey);
+
+
 
 export default provider;
 

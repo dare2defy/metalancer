@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js';
 import { getAddress } from '@ethersproject/address';
 import { Contract } from '@ethersproject/contracts';
 import { Wallet } from '@ethersproject/wallet';
-import assets from '@balancer-labs/assets/assets/index.json';
+import assets from 'balancer-assets/assets/index.json';
 
 import config from '@/config';
 import { debugProvider } from '@/utils/provider';

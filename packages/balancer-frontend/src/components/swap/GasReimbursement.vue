@@ -30,7 +30,7 @@ import { ETH_KEY } from '@/utils/helpers';
 import config from '@/config';
 import BigNumber from 'bignumber.js';
 
-import eligibleAssetList from '@balancer-labs/assets/lists/eligible.json';
+import eligibleAssetList from 'balancer-assets/lists/eligible.json';
 
 export default defineComponent({
     props: {

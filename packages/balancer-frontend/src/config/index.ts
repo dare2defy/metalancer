@@ -1,5 +1,6 @@
 import homestead from './homestead.json';
 import kovan from './kovan.json';
+import dare2defy from './dare2defy.json'
 
 interface Connector {
     id: string;
@@ -45,6 +46,10 @@ const configs = {
         untrusted: [],
         ...kovan,
     },
+    1337:{
+        untrusted: [],
+        ...dare2defy,
+    }
 };
 // eslint-disable-next-line no-undef
 const network = process.env.APP_CHAIN_ID || 1;

@@ -24,7 +24,7 @@
 
 import { PropType, defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
-import { Swap, Pool } from '@balancer-labs/sor/dist/types';
+import { Swap, Pool } from 'balancer-sor/dist/types';
 import { RootState } from '@/store';
 import { ETH_KEY } from '@/utils/helpers';
 import config from '@/config';

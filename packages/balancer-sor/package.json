@@ -1,5 +1,5 @@
 {
-    "name": "@balancer-labs/sor",
+    "name": "balancer-sor",
     "version": "1.0.0-1",
     "license": "GPL-3.0-only",
     "main": "dist/index.js",
@@ -45,7 +45,7 @@
         "@ethersproject/providers": "5.0.12",
         "@ethersproject/solidity": "^5.0.5",
         "@ethersproject/units": "^5.0.6",
-        "bignumber.js": "^9.0.0",
+        "bignumber.js": "^9.0.1",
         "isomorphic-fetch": "^2.2.1"
     }
 }

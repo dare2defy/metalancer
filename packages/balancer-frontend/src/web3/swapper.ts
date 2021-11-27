@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js';
 import { Contract } from '@ethersproject/contracts';
 import { Web3Provider } from '@ethersproject/providers';
-import { Swap } from '@balancer-labs/sor/dist/types';
+import { Swap } from 'balancer-sor/dist/types';
 
 import ExchangeProxyABI from '../abi/ExchangeProxy.json';
 

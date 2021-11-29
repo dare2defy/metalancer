@@ -7,6 +7,6 @@ lerna bootstrap
 
 ## Run
 ```
-cd balancer-frontend
+cd packages/balancer-frontend
 npm run serve
 ```

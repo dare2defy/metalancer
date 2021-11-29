@@ -1,4 +1,8 @@
 {
+	"1337": {
+		"0xdAe147580D673E8A8845776af3e80f4b28a7a69a": "uncapped",
+		"0x95DD164008C1E3f90C939013233fe6a2bee9f2EC": "uncapped"
+	},
 	"kovan": {
 		"0xdFCeA9088c8A88A76FF74892C1457C17dfeef9C1": "uncapped",
 		"0x41286Bb1D3E870f3F750eB7E1C25d7E48c8A1Ac7": "uncapped",

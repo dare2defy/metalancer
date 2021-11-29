@@ -1,11 +1,11 @@
 {
-    "network": "dare2defy",
+    "network": 1337,
     "chainId": 1337,
     "precision": 6,
-    "infuraKey": "n/a 237c3102f39b4940abbe12dc49165cd6",
+    "infuraKey": "n/a 237c3102f39b4940abbe12dc49165cd6np",
     "alchemyKey": "n/a cQGZUiTLRCFsQS7kbRxPJK4eH4fTTu88",
-    "subgraphUrl": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer",
-    "subgraphBackupUrl": "https://ipfs.fleek.co/ipns/balancer-bucket.storage.fleek.co/balancer-exchange/pools",
+    "subgraphUrl": "n/a https://api.thegraph.com/subgraphs/name/balancer-labs/balancer",
+    "subgraphBackupUrl": "n/a https://ipfs.fleek.co/ipns/balancer-bucket.storage.fleek.co/balancer-exchange/pools",
     "addresses": {
         "bFactory": "0x9424B1412450D0f8Fc2255FAf6046b98213B76Bd",
         "bActions": "0xde4A25A0b9589689945d842c5ba0CF4f0D4eB3ac",
@@ -18,21 +18,21 @@
         "injected": {},
         "walletconnect": {
             "rpc": {
-                "1": "https://mainnet.infura.io/v3/237c3102f39b4940abbe12dc49165cd6"
+                "1": "n/a https://mainnet.infura.io/v3/237c3102f39b4940abbe12dc49165cd6"
             }
         },
         "portis": {
-            "network": "mainnet",
-            "dappId": "3f1c3cfc-7dd5-4e8a-aa03-71ff7396d9fe"
+            "network": "n/a mainnet",
+            "dappId": "n/a 3f1c3cfc-7dd5-4e8a-aa03-71ff7396d9fe"
         },
         "walletlink": {
             "appName": "Balancer Exchange",
             "darkMode": true,
             "chainId": 1,
-            "ethJsonrpcUrl": "https://mainnet.infura.io/v3/237c3102f39b4940abbe12dc49165cd6"
+            "ethJsonrpcUrl": "n/a https://mainnet.infura.io/v3/237c3102f39b4940abbe12dc49165cd6"
         },
         "fortmatic": {
-            "apiKey": "pk_live_9CE8FD92E54684ED"
+            "apiKey": "n/a pk_live_9CE8FD92E54684ED"
         }
     }
 }

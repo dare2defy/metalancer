@@ -6,10 +6,8 @@ const provider = new JsonRpcProvider("http://dare2defy.xyz:8545");
  
 //new InfuraProvider(config.network, config.infuraKey);
 
-
-
 export default provider;
 
-const debugProvider = new AlchemyProvider(config.network, config.alchemyKey);
+const debugProvider = new JsonRpcProvider("http://dare2defy.xyz:8545");
 
 export { debugProvider };

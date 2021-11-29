@@ -2,6 +2,7 @@
 
 ## Build
 ```
+npm install --global lerna
 lerna bootstrap
 ```
 

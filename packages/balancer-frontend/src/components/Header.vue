@@ -1,73 +1,50 @@
 <template>
     <div class="header">
         <div class="header-left">
-            <router-link
-                class="brand"
-                :to="'/'"
-            >
-                <Icon
-                    class="logo"
-                    :title="'brand'"
-                />
-                <span class="title">Balancer</span>
+            <router-link class="brand" :to="'/'">
+                <Logo />
+                <span class="title">Dare2Defy</span>
             </router-link>
-            <a
-                v-if="isDev"
-                :href="commitLink"
-                target="_blank"
-                class="commit-label"
-            >
-                <div>
-                    #{{ commitLabel }}
-                </div>
+            <a v-if="isDev" :href="commitLink" target="_blank" class="commit-label">
+                <div>#{{ commitLabel }}</div>
             </a>
             <div class="page-links">
-                <div
-                    class="link active"
-                >
+                <div class="link active">
                     Trade
                 </div>
-                <a
-                    class="link"
-                    href="https://pools.balancer.exchange"
-                    target="_blank"
-                >
+                <a class="link" href="https://pools.balancer.exchange" target="_blank">
                     Invest
                 </a>
             </div>
         </div>
         <div class="header-right">
-            <Icon
-                class="mode-icon"
-                :title="modeLogo"
-                @click="toggleMode"
-            />
+            <Icon class="mode-icon" :title="modeLogo" @click="toggleMode" />
             <Account class="account" />
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, ref, computed } from "vue";
 
-import Storage from '@/utils/storage';
+import Storage from "@/utils/storage";
 
-import Account from '@/components/Account.vue';
-import Icon from '@/components/Icon.vue';
+import Account from "@/components/Account.vue";
+import Logo from "@/components/Logo.vue";
 
 export default defineComponent({
     components: {
         Account,
-        Icon,
+        Logo
     },
     setup() {
         // eslint-disable-next-line no-undef
-        const isDev = ref(process.env.APP_ENV === 'dev');
+        const isDev = ref(process.env.APP_ENV === "dev");
         // eslint-disable-next-line no-undef
-        const commit = ref(APP_COMMIT || '');
+        const commit = ref(APP_COMMIT || "");
         const commitLabel = computed(() => commit.value.substr(0, 6));
-        const commitLink = computed(() => 
-            `https://github.com/balancer-labs/balancer-frontend/commit/${commit.value}`,
+        const commitLink = computed(
+            () => `https://github.com/balancer-labs/balancer-frontend/commit/${commit.value}`
         );
 
         const mode = ref(Storage.isDarkmode());
@@ -76,14 +53,14 @@ export default defineComponent({
         function toggleMode(): void {
             mode.value = Storage.toggleMode();
             if (mode.value) {
-                document.documentElement.setAttribute('data-theme', 'dark');
+                document.documentElement.setAttribute("data-theme", "dark");
             } else {
-                document.documentElement.removeAttribute('data-theme');
+                document.documentElement.removeAttribute("data-theme");
             }
         }
 
         function getLogo(isDarkmode: boolean): string {
-            return isDarkmode ? 'moon' : 'sun';
+            return isDarkmode ? "moon" : "sun";
         }
 
         return {
@@ -92,27 +69,25 @@ export default defineComponent({
             commitLink,
 
             modeLogo,
-            toggleMode,
+            toggleMode
         };
-    },
+    }
 });
 </script>
 
 <style scoped>
 .header {
-    height: 80px;
+    flex: 0 0 80px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--background-primary);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid var(--border);
+    position: relative;
 }
 
 .header-left {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .header-right {
@@ -128,7 +103,7 @@ a {
 .brand {
     margin-left: 20px;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .logo {

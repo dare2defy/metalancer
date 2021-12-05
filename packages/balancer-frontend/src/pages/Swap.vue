@@ -1,5 +1,7 @@
 <template>
     <div class="page">
+        <div class="rocket" />
+
         <div class="pair">
             <div class="header">
                 <div class="header-text">
@@ -16,9 +18,11 @@
                 :slippage="slippage"
                 :swaps-loading="swapsLoading"
                 :validation="validation"
-                @change="value => {
-                    handleAmountChange(value);
-                }"
+                @change="
+                    value => {
+                        handleAmountChange(value);
+                    }
+                "
             />
             <GasReimbursement
                 class="reimbursement-message"
@@ -56,35 +60,35 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, onMounted, watch, computed } from 'vue';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
-import { useIntervalFn } from '@vueuse/core';
-import BigNumber from 'bignumber.js';
-import { getAddress } from '@ethersproject/address';
-import { ErrorCode } from '@ethersproject/logger';
-import { SOR } from 'balancer-sor';
-import { Swap, Pool } from 'balancer-sor/dist/types';
+import { ref, defineComponent, onMounted, watch, computed } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import { useIntervalFn } from "@vueuse/core";
+import BigNumber from "bignumber.js";
+import { getAddress } from "@ethersproject/address";
+import { ErrorCode } from "@ethersproject/logger";
+import { SOR } from "balancer-sor";
+import { Swap, Pool } from "balancer-sor/dist/types";
 
-import config from '@/config';
-import provider from '@/utils/provider';
-import { ETH_KEY, scale, isAddress, getEtherscanLink } from '@/utils/helpers';
-import { ValidationError, SwapValidation, validateNumberInput } from '@/utils/validation';
-import Storage from '@/utils/storage';
-import Swapper from '@/web3/swapper';
-import Helper from '@/web3/helper';
-import { RootState } from '@/store';
+import config from "@/config";
+import provider from "@/utils/provider";
+import { ETH_KEY, scale, isAddress, getEtherscanLink } from "@/utils/helpers";
+import { ValidationError, SwapValidation, validateNumberInput } from "@/utils/validation";
+import Storage from "@/utils/storage";
+import Swapper from "@/web3/swapper";
+import Helper from "@/web3/helper";
+import { RootState } from "@/store";
 
-import ModalAssetSelector from '@/components/ModalAssetSelector.vue';
-import Routing from '@/components/swap/Routing.vue';
-import Settings from '@/components/Settings.vue';
-import SwapButton from '@/components/swap/Button.vue';
-import SwapPair from '@/components/swap/Pair.vue';
-import GasReimbursement from '@/components/swap/GasReimbursement.vue';
-import { setGoal } from '@/utils/fathom';
+import ModalAssetSelector from "@/components/ModalAssetSelector.vue";
+import Routing from "@/components/swap/Routing.vue";
+import Settings from "@/components/Settings.vue";
+import SwapButton from "@/components/swap/Button.vue";
+import SwapPair from "@/components/swap/Pair.vue";
+import GasReimbursement from "@/components/swap/GasReimbursement.vue";
+import { setGoal } from "@/utils/fathom";
 
 // eslint-disable-next-line no-undef
-const GAS_PRICE = process.env.APP_GAS_PRICE || '100000000000';
+const GAS_PRICE = process.env.APP_GAS_PRICE || "100000000000";
 const MAX_POOLS = 4;
 
 interface Pair {
@@ -99,7 +103,7 @@ export default defineComponent({
         Settings,
         SwapButton,
         SwapPair,
-        GasReimbursement,
+        GasReimbursement
     },
     setup() {
         let sor: SOR | undefined = undefined;
@@ -108,10 +112,10 @@ export default defineComponent({
         const store = useStore<RootState>();
 
         const isExactIn = ref(true);
-        const assetInAddressInput = ref('');
-        const assetInAmountInput = ref('');
-        const assetOutAddressInput = ref('');
-        const assetOutAmountInput = ref('');
+        const assetInAddressInput = ref("");
+        const assetInAmountInput = ref("");
+        const assetOutAddressInput = ref("");
+        const assetOutAmountInput = ref("");
         const slippage = ref(0);
         const transactionPending = ref(false);
         const swapsLoading = ref(false);
@@ -123,7 +127,7 @@ export default defineComponent({
         const account = computed(() => {
             const { connector, address } = store.state.account;
             if (!connector || !connector.id || !address) {
-                return '';
+                return "";
             }
             return address;
         });
@@ -138,7 +142,8 @@ export default defineComponent({
                 return SwapValidation.INVALID_INPUT;
             }
             // No swaps
-            if ((swapsLoading.value || swaps.value.length === 0) &&
+            if (
+                (swapsLoading.value || swaps.value.length === 0) &&
                 !isWrapPair(assetInAddressInput.value, assetOutAddressInput.value)
             ) {
                 return SwapValidation.NO_SWAPS;
@@ -154,7 +159,7 @@ export default defineComponent({
             }
             // Insufficient balance
             const { balances } = store.state.account;
-            const metadata = store.getters['assets/metadata'];
+            const metadata = store.getters["assets/metadata"];
             const assetInBalance = balances[assetInAddressInput.value];
             const assetInMetadata = metadata[assetInAddressInput.value];
             if (!assetInMetadata) {
@@ -187,16 +192,16 @@ export default defineComponent({
 
         useIntervalFn(async () => {
             if (sor) {
-                console.time('[SOR] fetchPools');
+                console.time("[SOR] fetchPools");
                 await sor.fetchPools();
-                console.timeEnd('[SOR] fetchPools');
+                console.timeEnd("[SOR] fetchPools");
                 await onAmountChange(activeInput.value);
             }
         }, 60 * 1000);
 
         useIntervalFn(async () => {
-            const assets = Object.keys(store.getters['assets/metadata']);
-            store.dispatch('account/fetchAssets', assets);
+            const assets = Object.keys(store.getters["assets/metadata"]);
+            store.dispatch("account/fetchAssets", assets);
         }, 5 * 60 * 1000);
 
         watch(assetInAddressInput, () => {
@@ -207,9 +212,10 @@ export default defineComponent({
         watch(assetOutAddressInput, async () => {
             Storage.saveOutputAsset(config.chainId, assetOutAddressInput.value);
             if (sor) {
-                const assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                    ? config.addresses.weth
-                    : assetOutAddressInput.value;
+                const assetOutAddress =
+                    assetOutAddressInput.value === ETH_KEY
+                        ? config.addresses.weth
+                        : assetOutAddressInput.value;
                 await sor.setCostOutputToken(assetOutAddress);
             }
             onAmountChange(activeInput.value);
@@ -221,30 +227,30 @@ export default defineComponent({
 
         function handleAssetSelect(assetAddress: string): void {
             const assetModalKey = store.state.ui.modal.asset.key;
-            if (assetModalKey === 'input') {
+            if (assetModalKey === "input") {
                 assetInAddressInput.value = assetAddress;
             }
-            if (assetModalKey === 'output') {
+            if (assetModalKey === "output") {
                 assetOutAddressInput.value = assetAddress;
             }
         }
 
         async function unlock(): Promise<void> {
             transactionPending.value = true;
-            const provider = await store.getters['account/provider'];
+            const provider = await store.getters["account/provider"];
             const assetInAddress = assetInAddressInput.value;
             const spender = config.addresses.exchangeProxy;
             const tx = await Helper.unlock(provider, assetInAddress, spender);
-            setGoal('approve');
-            const metadata = store.getters['assets/metadata'];
+            setGoal("approve");
+            const metadata = store.getters["assets/metadata"];
             const assetSymbol = metadata[assetInAddress].symbol;
             const text = `Unlock ${assetSymbol}`;
             await handleTransaction(tx, text);
-            store.dispatch('account/fetchAssets', [ assetInAddress ]);
+            store.dispatch("account/fetchAssets", [assetInAddress]);
         }
 
         async function swap(): Promise<void> {
-            const metadata = store.getters['assets/metadata'];
+            const metadata = store.getters["assets/metadata"];
             transactionPending.value = true;
             const assetInAddress = assetInAddressInput.value;
             const assetOutAddress = assetOutAddressInput.value;
@@ -253,18 +259,18 @@ export default defineComponent({
             const assetInAmountNumber = new BigNumber(assetInAmountInput.value);
             const assetInAmount = scale(assetInAmountNumber, assetInDecimals);
             const slippageBufferRate = Storage.getSlippage();
-            const provider = await store.getters['account/provider'];
+            const provider = await store.getters["account/provider"];
             if (isWrapPair(assetInAddress, assetOutAddress)) {
                 if (assetInAddress === ETH_KEY) {
                     const tx = await Helper.wrap(provider, assetInAmount);
-                    const text = 'Wrap ether';
+                    const text = "Wrap ether";
                     await handleTransaction(tx, text);
                 } else {
                     const tx = await Helper.unwrap(provider, assetInAmount);
-                    const text = 'Unwrap ether';
+                    const text = "Unwrap ether";
                     await handleTransaction(tx, text);
                 }
-                store.dispatch('account/fetchAssets', [ config.addresses.weth ]);
+                store.dispatch("account/fetchAssets", [config.addresses.weth]);
                 return;
             }
             const assetInSymbol = metadata[assetInAddress].symbol;
@@ -273,17 +279,34 @@ export default defineComponent({
             if (isExactIn.value) {
                 const assetOutAmountNumber = new BigNumber(assetOutAmountInput.value);
                 const assetOutAmount = scale(assetOutAmountNumber, assetOutDecimals);
-                const minAmount = assetOutAmount.div(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
-                const tx = await Swapper.swapIn(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmount, minAmount);
+                const minAmount = assetOutAmount
+                    .div(1 + slippageBufferRate)
+                    .integerValue(BigNumber.ROUND_DOWN);
+                const tx = await Swapper.swapIn(
+                    provider,
+                    swaps.value,
+                    assetInAddress,
+                    assetOutAddress,
+                    assetInAmount,
+                    minAmount
+                );
                 await handleTransaction(tx, text);
-                setGoal('swapIn');
+                setGoal("swapIn");
             } else {
-                const assetInAmountMax = assetInAmount.times(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
-                const tx = await Swapper.swapOut(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmountMax);
+                const assetInAmountMax = assetInAmount
+                    .times(1 + slippageBufferRate)
+                    .integerValue(BigNumber.ROUND_DOWN);
+                const tx = await Swapper.swapOut(
+                    provider,
+                    swaps.value,
+                    assetInAddress,
+                    assetOutAddress,
+                    assetInAmountMax
+                );
                 await handleTransaction(tx, text);
-                setGoal('swapOut');
+                setGoal("swapOut");
             }
-            store.dispatch('account/fetchAssets', [ assetInAddress, assetOutAddress ]);
+            store.dispatch("account/fetchAssets", [assetInAddress, assetOutAddress]);
             if (sor) {
                 sor.fetchPools();
                 onAmountChange(activeInput.value);
@@ -292,20 +315,16 @@ export default defineComponent({
 
         async function initSor(): Promise<void> {
             const poolsUrl = `${config.subgraphBackupUrl}?timestamp=${Date.now()}`;
-            sor = new SOR(
-                provider,
-                new BigNumber(GAS_PRICE),
-                MAX_POOLS,
-                config.chainId,
-                poolsUrl,
-            );
+            sor = new SOR(provider, new BigNumber(GAS_PRICE), MAX_POOLS, config.chainId, poolsUrl);
 
-            const assetInAddress = assetInAddressInput.value === ETH_KEY
-                ? config.addresses.weth
-                : assetInAddressInput.value;
-            const assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                ? config.addresses.weth
-                : assetOutAddressInput.value;
+            const assetInAddress =
+                assetInAddressInput.value === ETH_KEY
+                    ? config.addresses.weth
+                    : assetInAddressInput.value;
+            const assetOutAddress =
+                assetOutAddressInput.value === ETH_KEY
+                    ? config.addresses.weth
+                    : assetOutAddressInput.value;
             console.time(`[SOR] setCostOutputToken: ${assetOutAddress}`);
             await sor.setCostOutputToken(assetOutAddress);
             console.timeEnd(`[SOR] setCostOutputToken: ${assetOutAddress}`);
@@ -313,20 +332,20 @@ export default defineComponent({
             await sor.fetchFilteredPairPools(assetInAddress, assetOutAddress);
             console.timeEnd(`[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`);
             await onAmountChange(activeInput.value);
-            console.time('[SOR] fetchPools');
+            console.time("[SOR] fetchPools");
             await sor.fetchPools();
-            console.timeEnd('[SOR] fetchPools');
+            console.timeEnd("[SOR] fetchPools");
             await onAmountChange(activeInput.value);
             pools.value = sor.onChainCache.pools;
         }
 
         async function onAmountChange(amount: string): Promise<void> {
-            const metadata = store.getters['assets/metadata'];
+            const metadata = store.getters["assets/metadata"];
             if (validateNumberInput(amount) !== ValidationError.NONE) {
                 if (isExactIn.value) {
-                    assetOutAmountInput.value = '';
+                    assetOutAmountInput.value = "";
                 } else {
-                    assetInAmountInput.value = '';
+                    assetInAmountInput.value = "";
                 }
                 slippage.value = 0;
                 swaps.value = [];
@@ -343,12 +362,14 @@ export default defineComponent({
                 return;
             }
 
-            const assetInAddress = assetInAddressInput.value === ETH_KEY
-                ? config.addresses.weth
-                : assetInAddressInput.value;
-            const assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                ? config.addresses.weth
-                : assetOutAddressInput.value;
+            const assetInAddress =
+                assetInAddressInput.value === ETH_KEY
+                    ? config.addresses.weth
+                    : assetInAddressInput.value;
+            const assetOutAddress =
+                assetOutAddressInput.value === ETH_KEY
+                    ? config.addresses.weth
+                    : assetOutAddressInput.value;
 
             if (assetInAddress === assetOutAddress) {
                 return;
@@ -371,18 +392,21 @@ export default defineComponent({
                 const [tradeSwaps, tradeAmount, spotPrice] = await sor.getSwaps(
                     assetInAddress,
                     assetOutAddress,
-                    'swapExactIn',
-                    assetInAmount,
+                    "swapExactIn",
+                    assetInAmount
                 );
                 console.timeEnd(`[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`);
                 swaps.value = tradeSwaps;
                 const assetOutAmountRaw = scale(tradeAmount, -assetOutDecimals);
                 const assetOutPrecision = config.precision;
-                assetOutAmountInput.value = assetOutAmountRaw.toFixed(assetOutPrecision, BigNumber.ROUND_DOWN);
+                assetOutAmountInput.value = assetOutAmountRaw.toFixed(
+                    assetOutPrecision,
+                    BigNumber.ROUND_DOWN
+                );
                 if (tradeSwaps.length === 0) {
                     slippage.value = 0;
                 } else {
-                    const price = assetInAmount.div(tradeAmount).times('1e18');
+                    const price = assetInAmount.div(tradeAmount).times("1e18");
                     const slippageNumber = price.div(spotPrice).minus(1);
                     slippage.value = slippageNumber.isNegative()
                         ? 0.00001
@@ -396,19 +420,22 @@ export default defineComponent({
                 const [tradeSwaps, tradeAmount, spotPrice] = await sor.getSwaps(
                     assetInAddress,
                     assetOutAddress,
-                    'swapExactOut',
-                    assetOutAmount,
+                    "swapExactOut",
+                    assetOutAmount
                 );
                 console.timeEnd(`[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`);
                 swaps.value = tradeSwaps;
                 const assetInAmountRaw = scale(tradeAmount, -assetInDecimals);
                 const assetInPrecision = config.precision;
-                assetInAmountInput.value = assetInAmountRaw.toFixed(assetInPrecision, BigNumber.ROUND_UP);
+                assetInAmountInput.value = assetInAmountRaw.toFixed(
+                    assetInPrecision,
+                    BigNumber.ROUND_UP
+                );
 
                 if (tradeSwaps.length === 0) {
                     slippage.value = 0;
                 } else {
-                    const price = tradeAmount.div(assetOutAmount).times('1e18');
+                    const price = tradeAmount.div(assetOutAmount).times("1e18");
                     const slippageNumber = price.div(spotPrice).minus(1);
                     slippage.value = slippageNumber.isNegative()
                         ? 0.00001
@@ -422,40 +449,38 @@ export default defineComponent({
             if (transaction.code) {
                 transactionPending.value = false;
                 if (transaction.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
-                    store.dispatch('ui/notify', {
+                    store.dispatch("ui/notify", {
                         text: `${text} failed`,
-                        type: 'warning',
-                        link: 'https://help.balancer.finance',
+                        type: "warning",
+                        link: "https://help.balancer.finance"
                     });
                 }
                 return;
             }
 
-            store.dispatch('account/saveTransaction', {
+            store.dispatch("account/saveTransaction", {
                 transaction,
-                text,
+                text
             });
 
             const transactionReceipt = await provider.waitForTransaction(transaction.hash, 1);
             transactionPending.value = false;
-            store.dispatch('account/saveMinedTransaction', {
+            store.dispatch("account/saveMinedTransaction", {
                 receipt: transactionReceipt,
-                timestamp: Date.now(),
+                timestamp: Date.now()
             });
 
-            const type = transactionReceipt.status === 1
-                ? 'success'
-                : 'error';
+            const type = transactionReceipt.status === 1 ? "success" : "error";
             const link = getEtherscanLink(transactionReceipt.transactionHash);
-            store.dispatch('ui/notify', {
+            store.dispatch("ui/notify", {
                 text,
                 type,
-                link,
+                link
             });
         }
 
         async function fetchAssetMetadata(assetIn: string, assetOut: string): Promise<void> {
-            const metadata = store.getters['assets/metadata'];
+            const metadata = store.getters["assets/metadata"];
             const unknownAssets = [];
             if (!metadata[assetIn]) {
                 unknownAssets.push(assetIn);
@@ -466,18 +491,15 @@ export default defineComponent({
             if (unknownAssets.length === 0) {
                 return;
             }
-            await store.dispatch('assets/fetchMetadata', unknownAssets);
-            await store.dispatch('account/fetchAssets', unknownAssets);
+            await store.dispatch("assets/fetchMetadata", unknownAssets);
+            await store.dispatch("account/fetchAssets", unknownAssets);
         }
 
         function getInitialPair(): Pair {
             const pair = Storage.getPair(config.chainId);
-            let assetIn =
-                router.currentRoute.value.params.assetIn as string ||
-                pair.inputAsset;
+            let assetIn = (router.currentRoute.value.params.assetIn as string) || pair.inputAsset;
             let assetOut =
-                router.currentRoute.value.params.assetOut as string ||
-                pair.outputAsset;
+                (router.currentRoute.value.params.assetOut as string) || pair.outputAsset;
             if (isAddress(assetIn)) {
                 assetIn = getAddress(assetIn);
             }
@@ -486,7 +508,7 @@ export default defineComponent({
             }
             return {
                 assetIn,
-                assetOut,
+                assetOut
             };
         }
 
@@ -520,15 +542,39 @@ export default defineComponent({
             handleAmountChange,
             handleAssetSelect,
             unlock,
-            swap,
+            swap
         };
-    },
+    }
 });
 </script>
 
 <style scoped>
 .page {
-    flex-direction: column;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.rocket {
+    position: relative;
+    width: 235px;
+    height: 549px;
+    margin: 40px 40px 0 0;
+    background: url("../assets/images/rocket.png") no-repeat center / contain;
+    animation: rocket 6s ease-in-out infinite 0.5s;
+}
+
+@keyframes rocket {
+    0%,
+    100% {
+        transform: translateY(15px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 .pair {
@@ -538,7 +584,7 @@ export default defineComponent({
     flex-direction: column;
     border: 1px solid var(--border);
     border-radius: var(--border-radius-large);
-    background: var(--background-secondary);
+    background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 

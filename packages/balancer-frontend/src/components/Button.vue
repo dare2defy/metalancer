@@ -1,35 +1,37 @@
 <template>
-    <button
-        :class="{ primary }"
-    >
+    <button :class="{ primary, rounded }">
         <LoadingIndicator v-if="loading" />
         {{ text }}
     </button>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
-import LoadingIndicator from '@/components/LoadingIndicator.vue';
+import LoadingIndicator from "@/components/LoadingIndicator.vue";
 
 export default defineComponent({
     components: {
-        LoadingIndicator,
+        LoadingIndicator
     },
     props: {
         text: {
             type: String,
-            required: true,
+            required: true
         },
         primary: {
             type: Boolean,
-            default: false,
+            default: false
+        },
+        rounded: {
+            type: Boolean,
+            default: false
         },
         loading: {
             type: Boolean,
-            default: false,
-        },
-    },
+            default: false
+        }
+    }
 });
 </script>
 
@@ -54,8 +56,12 @@ button:hover {
     background: var(--background-primary);
 }
 
+button.rounded {
+    border-radius: var(--block-height);
+}
+
 button.primary {
-    background: linear-gradient(185deg, #f0f 0%, #00f 100%);
+    background: linear-gradient(to left, #f56915, #f0a80e);
     color: #fff;
 }
 

@@ -1,15 +1,7 @@
 <template>
-    <div
-        v-if="address"
-        class="account-wrapper"
-        @click="openAccountModal"
-    >
+    <div v-if="address" class="account-wrapper" @click="openAccountModal">
         <div class="account-meta">
-            <Jazzicon
-                class="account-icon"
-                :address="address"
-                :size="28"
-            />
+            <Jazzicon class="account-icon" :address="address" :size="28" />
             <div class="account-address">
                 {{ formatAddress(address) }}
             </div>
@@ -18,28 +10,29 @@
     <Button
         v-else
         :text="'Connect'"
-        :primary="false"
         :loading="loading"
         :disabled="loading"
+        primary
+        rounded
         class="connect-button"
         @click="openConnectorModal"
     />
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 
-import { RootState } from '@/store';
-import { formatAddress } from '@/utils/helpers';
+import { RootState } from "@/store";
+import { formatAddress } from "@/utils/helpers";
 
-import Button from '@/components/Button.vue';
-import Jazzicon from '@/components/Jazzicon.vue';
+import Button from "@/components/Button.vue";
+import Jazzicon from "@/components/Jazzicon.vue";
 
 export default defineComponent({
     components: {
         Button,
-        Jazzicon,
+        Jazzicon
     },
     setup() {
         const store = useStore<RootState>();
@@ -47,7 +40,7 @@ export default defineComponent({
         const address = computed(() => {
             const { connector, address } = store.state.account;
             if (!connector || !connector.id || !address) {
-                return '';
+                return "";
             }
             return address;
         });
@@ -58,11 +51,11 @@ export default defineComponent({
         });
 
         function openAccountModal(): void {
-            store.dispatch('ui/openAccountModal');
+            store.dispatch("ui/openAccountModal");
         }
 
         function openConnectorModal(): void {
-            store.dispatch('ui/openConnectorModal');
+            store.dispatch("ui/openConnectorModal");
         }
 
         return {
@@ -70,9 +63,9 @@ export default defineComponent({
             loading,
             formatAddress,
             openAccountModal,
-            openConnectorModal,
+            openConnectorModal
         };
-    },
+    }
 });
 </script>
 

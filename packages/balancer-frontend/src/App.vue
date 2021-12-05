@@ -1,37 +1,41 @@
 <template>
-    <div id="app">
+    <div class="app" id="app">
+        <Decor />
         <Header />
-        <router-view class="view" />
+        <router-view />
+        <Footer />
 
         <ModalSettings :open="isSettingsModalOpen" />
         <ModalAccount :open="isAccountModalOpen" />
         <ModalConnectorSelector :open="isConnectorModalOpen" />
-        <NotificationList
-            :items="notifications"
-        />
+        <NotificationList :items="notifications" />
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent, computed, onMounted } from "vue";
+import { useStore } from "vuex";
 
-import { RootState } from '@/store';
-import Storage from '@/utils/storage';
+import { RootState } from "@/store";
+import Storage from "@/utils/storage";
 
-import Header from '@/components/Header.vue';
-import ModalAccount from '@/components/ModalAccount.vue';
-import ModalConnectorSelector from '@/components/ModalConnectorSelector.vue';
-import ModalSettings from '@/components/ModalSettings.vue';
-import NotificationList from '@/components/NotificationList.vue';
+import Decor from "@/components/Decor.vue";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
+import ModalAccount from "@/components/ModalAccount.vue";
+import ModalConnectorSelector from "@/components/ModalConnectorSelector.vue";
+import ModalSettings from "@/components/ModalSettings.vue";
+import NotificationList from "@/components/NotificationList.vue";
 
 export default defineComponent({
     components: {
+        Decor,
         Header,
+        Footer,
         ModalAccount,
         ModalConnectorSelector,
         ModalSettings,
-        NotificationList,
+        NotificationList
     },
     setup() {
         const store = useStore<RootState>();
@@ -42,36 +46,32 @@ export default defineComponent({
 
         const notifications = computed(() => store.state.ui.notifications);
 
-        const mode = Storage.isDarkmode();
-        if (mode) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-        }
+        // const mode = Storage.isDarkmode();
+        document.documentElement.setAttribute("data-theme", "dark");
 
         onMounted(() => {
-            store.dispatch('assets/init');
-            store.dispatch('account/init');
-            store.dispatch('gas/init');
-            store.dispatch('bal4gas/init');
-            store.dispatch('price/init');
+            store.dispatch("assets/init");
+            store.dispatch("account/init");
+            store.dispatch("gas/init");
+            store.dispatch("bal4gas/init");
+            store.dispatch("price/init");
         });
 
         return {
             isSettingsModalOpen,
             isAccountModalOpen,
             isConnectorModalOpen,
-            notifications,
+            notifications
         };
-    },
+    }
 });
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap");
 
 :root {
-    --background-primary: #fafafa;
+    --background-primary: #2d3256;
     --background-secondary: #fff;
     --background-control: #fff;
     --background-hover: #f5f5f5;
@@ -104,10 +104,11 @@ export default defineComponent({
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+        sans-serif;
     font-size: var(--font-size-medium);
     margin: 0;
-    background: var(--background-primary);
+    background: linear-gradient(to bottom, #20233f, var(--background-primary));
     color: var(--text-primary);
 }
 
@@ -125,11 +126,10 @@ input:invalid {
     box-shadow: none;
 }
 
-.view {
-    min-height: calc(100vh - 80px);
+.app {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 @media only screen and (max-width: 768px) {

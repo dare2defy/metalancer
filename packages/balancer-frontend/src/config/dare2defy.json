@@ -4,8 +4,8 @@
     "precision": 6,
     "infuraKey": "n/a 237c3102f39b4940abbe12dc49165cd6np",
     "alchemyKey": "n/a cQGZUiTLRCFsQS7kbRxPJK4eH4fTTu88",
-    "subgraphUrl": "n/a https://api.thegraph.com/subgraphs/name/balancer-labs/balancer",
-    "subgraphBackupUrl": "n/a https://ipfs.fleek.co/ipns/balancer-bucket.storage.fleek.co/balancer-exchange/pools",
+    "subgraphUrl": "/src/assets/pools.json",
+    "subgraphBackupUrl": "/src/assets/pools.json",
     "addresses": {
         "bFactory": "0x3bA74f689b11c8B7E6f7C37242500DbB7CC62AD6", 
         "bActions": "0xde4A25A0b9589689945d842c5ba0CF4f0D4eB3ac", 

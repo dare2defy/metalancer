@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "author": "Timur Badretdinov <destinerx@gmail.com>",
   "scripts": {
-    "build": "tsc"
-    "prepublish": "tsc",
+    "build": "tsc",
+    "prepublish": "tsc"
   },
   "repository": {
     "type": "git",

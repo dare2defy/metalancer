@@ -1,4 +1,4 @@
-import { Provider, Contract } from 'ethcall';
+import { Provider, Contract } from 'balancer-ethcall';
 
 import dsProxyRegistryAbi from '../abi/DSProxyRegistry.json';
 import erc20Abi from '../abi/ERC20.json';

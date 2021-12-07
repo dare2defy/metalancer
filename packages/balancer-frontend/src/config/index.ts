@@ -49,6 +49,10 @@ const configs = {
     1337:{
         untrusted: [],
         ...dare2defy,
+    },
+    9000: {
+        untrusted: [],
+        ...dare2defy,
     }
 };
 // eslint-disable-next-line no-undef

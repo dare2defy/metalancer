@@ -169,7 +169,11 @@ function getPreferences(): Preferences {
             1337: {
                 inputAsset: '0xdAe147580D673E8A8845776af3e80f4b28a7a69a',
                 outputAsset: '0x95DD164008C1E3f90C939013233fe6a2bee9f2EC',
-            }
+            },
+            9000: {
+		        inputAsset: "0x22F57E9556D78E51DB1dc8DD299361B0cf2F4c74",
+		        outputAsset: "0x884CaF50DC26399b816F3BA1f64E7203E9a00D04"
+	        }
         },
         list: 'balancer',
         darkmode: true,

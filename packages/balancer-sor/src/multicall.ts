@@ -35,12 +35,10 @@ export async function getAllPoolDataOnChain(
         let tokens: Token[] = [];
 
         const poolContract = new Contract(pools.pools[i].id, poolAbi, provider);
-        let tokensList = await poolContract.methods.getCurrentTokens().call();
-        let swapFee = await poolContract.methods.getSwapFee().call();
-        let isFinal = await poolContract.methods.isFinalized().call();
-        let getTotalDenormalizedWeight = await poolContract.methods
-            .getTotalDenormalizedWeight()
-            .call();
+        let tokensList = await poolContract.getCurrentTokens();
+        let swapFee = await poolContract.getSwapFee();
+        let isFinal = await poolContract.isFinalized();
+        let getTotalDenormalizedWeight = await poolContract.getTotalDenormalizedWeight();
         if (!isFinal) {
             continue;
         }
@@ -56,14 +54,12 @@ export async function getAllPoolDataOnChain(
             tokensList: tokensList,
         };
 
-        for (let j = 0; j < pools.pools[j].tokens.length; j++) {
+        for (let j = 0; j < pools.pools[i].tokens.length; j++) {
             let token = pools.pools[i].tokens[j];
-            let denormWeight = await poolContract.methods
-                .getDenormalizedWeight(token.address)
-                .call();
-            let bal = await poolContract.methods
-                .getBalance(token.address)
-                .call();
+            let denormWeight = await poolContract.getDenormalizedWeight(
+                token.address
+            );
+            let bal = await poolContract.getBalance(token.address);
             p.tokens.push({
                 address: token.address,
                 balance: bal,
@@ -73,5 +69,7 @@ export async function getAllPoolDataOnChain(
         }
         onChainPools.pools.push(p);
     }
+    console.log('onchain pools');
+    console.log(onChainPools);
     return onChainPools;
 }

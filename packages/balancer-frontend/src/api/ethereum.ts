@@ -82,8 +82,8 @@ export default class Ethereum {
             "0x884CaF50DC26399b816F3BA1f64E7203E9a00D04"
         ];
         const metadata: Record<string, AssetMetadata> = {};
-        for (let i = 0; i < 3; i++) {
-            const assetAddress = assets[i];
+        for (let i = 0; i < addresses.length; i++) {
+            const assetAddress = addresses[i];
             const name = "TOKEN" + (i + 1);
             const symbol = "TOK" + (i + 1);
             const decimals = 18;

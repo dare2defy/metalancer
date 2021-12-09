@@ -1,16 +1,18 @@
-import BigNumber from 'bignumber.js';
-import { getAddress } from '@ethersproject/address';
-import { Contract } from '@ethersproject/contracts';
-import { Wallet } from '@ethersproject/wallet';
-import assets from 'balancer-assets/assets/index.json';
+import BigNumber from "bignumber.js";
+import { getAddress } from "@ethersproject/address";
+import { Contract } from "@ethersproject/contracts";
+import { Wallet } from "@ethersproject/wallet";
+import assets from "balancer-assets/assets/index.json";
 
-import config from '@/config';
-import { debugProvider } from '@/utils/provider';
+import config from "@/config";
+import { debugProvider } from "@/utils/provider";
 
-export const ETH_KEY = 'ether';
+export const ETH_KEY = "photon";
 
 export function formatAddress(address: string, length = 8): string {
-    const ellipsizedAddress = `${address.substr(0, 2 + length / 2)}…${address.substr(42 - length / 2)}`;
+    const ellipsizedAddress = `${address.substr(0, 2 + length / 2)}…${address.substr(
+        42 - length / 2
+    )}`;
     return ellipsizedAddress;
 }
 
@@ -21,20 +23,20 @@ export function formatTxHash(txHash: string, length = 16): string {
 
 export function formatDate(timestamp: number): string {
     const options = {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric"
     };
     const date = new Date(timestamp);
-    return date.toLocaleString('en-US', options);
+    return date.toLocaleString("en-US", options);
 }
 
 export function isAddress(value: string): boolean {
     try {
         getAddress(value);
-    } catch(e) {
+    } catch (e) {
         return false;
     }
     return true;
@@ -53,8 +55,8 @@ export function sleep(ms: number): Promise<void> {
 export function getEtherscanLink(txHash: string): string {
     const chainId = config.chainId;
     const prefixMap = {
-        1: '',
-        42: 'kovan.',
+        1: "",
+        42: "kovan."
     };
     const prefix = prefixMap[chainId];
     const link = `https://${prefix}etherscan.io/tx/${txHash}`;
@@ -64,8 +66,8 @@ export function getEtherscanLink(txHash: string): string {
 export function getAccountLink(address: string): string {
     const chainId = config.chainId;
     const prefixMap = {
-        1: '',
-        42: 'kovan.',
+        1: "",
+        42: "kovan."
     };
     const prefix = prefixMap[chainId];
     const link = `https://${prefix}etherscan.io/address/${address}`;
@@ -75,8 +77,8 @@ export function getAccountLink(address: string): string {
 export function getPoolLink(pool: string): string {
     const chainId = config.chainId;
     const prefixMap = {
-        1: '',
-        42: 'kovan.',
+        1: "",
+        42: "kovan."
     };
     const prefix = prefixMap[chainId];
     const link = `https://${prefix}pools.balancer.exchange/#/pool/${pool}`;
@@ -87,14 +89,14 @@ export function getAssetLogo(address: string): string {
     if (assets.includes(address.toLowerCase())) {
         return `https://raw.githubusercontent.com/balancer-labs/assets/master/assets/${address.toLowerCase()}.png`;
     }
-    if (address.toLowerCase() === '0x50de6856358cc35f3a9a57eaaa34bd4cb707d2cd') {
-        return 'https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0x50de6856358cc35f3a9a57eaaa34bd4cb707d2cd.png';
+    if (address.toLowerCase() === "0x50de6856358cc35f3a9a57eaaa34bd4cb707d2cd") {
+        return "https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0x50de6856358cc35f3a9a57eaaa34bd4cb707d2cd.png";
     }
-    if (address.toLowerCase() === '0x6fcb6408499a7c0f242e32d77eb51ffa1dd28a7e') {
-        return 'https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0x6fcb6408499a7c0f242e32d77eb51ffa1dd28a7e.png';
+    if (address.toLowerCase() === "0x6fcb6408499a7c0f242e32d77eb51ffa1dd28a7e") {
+        return "https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0x6fcb6408499a7c0f242e32d77eb51ffa1dd28a7e.png";
     }
-    if (address.toLowerCase() === '0xffffffff2ba8f66d4e51811c5190992176930278') {
-        return 'https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0xffffffff2ba8f66d4e51811c5190992176930278.png';
+    if (address.toLowerCase() === "0xffffffff2ba8f66d4e51811c5190992176930278") {
+        return "https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0xffffffff2ba8f66d4e51811c5190992176930278.png";
     }
     return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`;
 }

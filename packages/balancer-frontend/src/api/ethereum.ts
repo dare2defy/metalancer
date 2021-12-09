@@ -1,11 +1,12 @@
-import { Provider, Contract } from 'balancer-ethcall';
+import { Provider, Contract } from "balancer-ethcall";
+// import { Contract } from '@ethersproject/contracts';
 
-import dsProxyRegistryAbi from '../abi/DSProxyRegistry.json';
-import erc20Abi from '../abi/ERC20.json';
+import dsProxyRegistryAbi from "../abi/DSProxyRegistry.json";
+import erc20Abi from "../abi/ERC20.json";
 
-import config, { AssetMetadata } from '@/config';
-import { ETH_KEY, getAssetLogo } from '@/utils/helpers';
-import provider from '@/utils/provider';
+import config, { AssetMetadata } from "@/config";
+import { ETH_KEY, getAssetLogo } from "@/utils/helpers";
+import provider from "@/utils/provider";
 
 export type Allowances = Record<string, Record<string, string>>;
 
@@ -37,12 +38,9 @@ export default class Ethereum {
         calls.push(ethBalanceCall);
         // Fetch proxy
         const dsProxyRegistryAddress = config.addresses.dsProxyRegistry;
-        const dsProxyRegistryContract = new Contract(
-            dsProxyRegistryAddress,
-            dsProxyRegistryAbi,
-        );
+        const dsProxyRegistryContract = new Contract(dsProxyRegistryAddress, dsProxyRegistryAbi);
         const proxyCall = dsProxyRegistryContract.proxies(address);
-        calls.push(proxyCall);
+        // calls.push(proxyCall);
         // Fetch data
         const data = await ethcallProvider.all(calls);
         const assetCount = assets.length;
@@ -56,38 +54,45 @@ export default class Ethereum {
             i++;
         }
         balances.ether = data[2 * assetCount].toString();
-        const proxy = data[2 * assetCount + 1];
+        const proxy = exchangeProxyAddress;
+        console.log(balances);
         return { allowances, balances, proxy };
     }
 
     static async fetchAssetMetadata(assets: string[]): Promise<Record<string, AssetMetadata>> {
-        const ethcallProvider = new Provider();
-        await ethcallProvider.init(provider);
-        const calls = [];
-        // Fetch asset metadata
-        for (const assetAddress of assets) {
-            const assetContract = new Contract(assetAddress, erc20Abi);
-            const nameCall = assetContract.name();
-            const symbolCall = assetContract.symbol();
-            const decimalCall = assetContract.decimals();
-            calls.push(nameCall);
-            calls.push(symbolCall);
-            calls.push(decimalCall);
-        }
+        console.log("this is it2!");
+        // const ethcallProvider = new Provider();
+        // await ethcallProvider.init(provider);
+        // const calls = [];
+        // // Fetch asset metadata
+        // for (const assetAddress of assets) {
+        //     const assetContract = new Contract(assetAddress, erc20Abi);
+        //     const nameCall = assetContract.name();
+        //     const symbolCall = assetContract.symbol();
+        //     const decimalCall = assetContract.decimals();
+        //     calls.push(nameCall);
+        //     calls.push(symbolCall);
+        //     calls.push(decimalCall);
+        // }
         // Fetch data
-        const data = await ethcallProvider.all(calls);
+        //const data = await ethcallProvider.all(calls);
+        let addresses: string[] = [
+            "0x22F57E9556D78E51DB1dc8DD299361B0cf2F4c74",
+            "0x5b56858163b4412A23920c5C5A24889C3d9E1155",
+            "0x884CaF50DC26399b816F3BA1f64E7203E9a00D04"
+        ];
         const metadata: Record<string, AssetMetadata> = {};
-        for (let i = 0; i < assets.length; i++) {
+        for (let i = 0; i < 3; i++) {
             const assetAddress = assets[i];
-            const name = data[3 * i];
-            const symbol = data[3 * i + 1];
-            const decimals = data[3 * i + 2];
+            const name = "TOKEN" + (i + 1);
+            const symbol = "TOK" + (i + 1);
+            const decimals = 18;
             metadata[assetAddress] = {
-                address: assetAddress,
+                address: addresses[i],
                 name,
                 symbol,
                 decimals,
-                logoURI: getAssetLogo(assetAddress),
+                logoURI: undefined
             };
         }
         return metadata;

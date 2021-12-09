@@ -9,9 +9,8 @@ export async function getAllPoolDataOnChain(
     provider: BaseProvider
 ): Promise<Pools> {
     if (pools.pools.length === 0) throw Error('There are no pools.');
-
-    const customMultiAbi = require('./abi/customMulticall.json');
-    const contract = new Contract(multiAddress, customMultiAbi, provider);
+    console.log(pools);
+    console.log('export async function getAllPoolDataOnChain');
 
     let addresses = [];
     let total = 0;
@@ -27,7 +26,7 @@ export async function getAllPoolDataOnChain(
         });
     }
 
-    let results = await contract.getPoolInfo(addresses, total);
+    const poolAbi = require('./abi/BPool_ABI.json');
 
     let j = 0;
     let onChainPools: Pools = { pools: [] };
@@ -35,27 +34,43 @@ export async function getAllPoolDataOnChain(
     for (let i = 0; i < pools.pools.length; i++) {
         let tokens: Token[] = [];
 
+        const poolContract = new Contract(pools.pools[i].id, poolAbi, provider);
+        let tokensList = await poolContract.methods.getCurrentTokens().call();
+        let swapFee = await poolContract.methods.getSwapFee().call();
+        let isFinal = await poolContract.methods.isFinalized().call();
+        let getTotalDenormalizedWeight = await poolContract.methods
+            .getTotalDenormalizedWeight()
+            .call();
+        if (!isFinal) {
+            continue;
+        }
+
         let p: Pool = {
             id: pools.pools[i].id,
-            swapFee: bmath.scale(bmath.bnum(pools.pools[i].swapFee), 18),
+            swapFee: bmath.scale(bmath.bnum(swapFee), 18),
             totalWeight: bmath.scale(
-                bmath.bnum(pools.pools[i].totalWeight),
+                bmath.bnum(getTotalDenormalizedWeight),
                 18
             ),
             tokens: tokens,
-            tokensList: pools.pools[i].tokensList,
+            tokensList: tokensList,
         };
 
-        pools.pools[i].tokens.forEach(token => {
-            let bal = bmath.bnum(results[j]);
-            j++;
+        for (let j = 0; j < pools.pools[j].tokens.length; j++) {
+            let token = pools.pools[i].tokens[j];
+            let denormWeight = await poolContract.methods
+                .getDenormalizedWeight(token.address)
+                .call();
+            let bal = await poolContract.methods
+                .getBalance(token.address)
+                .call();
             p.tokens.push({
                 address: token.address,
                 balance: bal,
                 decimals: Number(token.decimals),
                 denormWeight: bmath.scale(bmath.bnum(token.denormWeight), 18),
             });
-        });
+        }
         onChainPools.pools.push(p);
     }
     return onChainPools;

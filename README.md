@@ -11,6 +11,9 @@ This project introduces battle-proven Balancer Bronze realease to the EVMos ecos
 * We've rewamped balance retrival mechanism that relied on a custom multicall with no source code available. Balancer uses a custom multicall contract, which is not in Balancer's Github repo. This is a major show stopper for deployment of Balancer to Evmos. Our fork does not require this contract anymore.
 * We've introduced a spaceship to the frontpage to motivate you to build the next-big-DeFi protocol for EVMos ☺️
 
+# Configuring and Running a local node
+
+
 # Building and Running Front-end
 ## Build
 

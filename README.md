@@ -114,6 +114,9 @@ To export a private key for Metamask, run
 ./evmosd keys unsafe-export-eth-key user1 --keyring-backend test --home=./local
 ```
 
+## Deploying contracts
+
+
 
 
 # Building and Running Front-end

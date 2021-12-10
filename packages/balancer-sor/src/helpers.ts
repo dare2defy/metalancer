@@ -450,14 +450,14 @@ export const parsePoolPairData = (
     tokenOut: string
 ): PoolPairData => {
     let tI = p.tokens.find(t => getAddress(t.address) === getAddress(tokenIn));
-    // console.log("tI")
-    // console.log(tI.balance.toString());
-    // console.log(tI)
+    console.log('tI');
+    console.log(tI.denormWeight.toString());
+    console.log(tI);
     let tO = p.tokens.find(t => getAddress(t.address) === getAddress(tokenOut));
 
-    // console.log("tO")
-    // console.log(tO.balance.toString());
-    // console.log(tO)
+    console.log('tO');
+    console.log(tO.denormWeight.toString());
+    console.log(tO);
 
     let poolPairData = {
         id: p.id,
@@ -471,6 +471,8 @@ export const parsePoolPairData = (
         weightOut: scale(bnum(tO.denormWeight).div(bnum(p.totalWeight)), 18),
         swapFee: bnum(p.swapFee),
     };
+    console.log('poolPairData');
+    console.log(poolPairData);
 
     return poolPairData;
 };

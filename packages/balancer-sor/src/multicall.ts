@@ -62,7 +62,7 @@ export async function getAllPoolDataOnChain(
             let bal = await poolContract.getBalance(token.address);
             p.tokens.push({
                 address: token.address,
-                balance: bal,
+                balance: bmath.bnum(bal),
                 decimals: Number(token.decimals),
                 denormWeight: bmath.scale(bmath.bnum(token.denormWeight), 18),
             });

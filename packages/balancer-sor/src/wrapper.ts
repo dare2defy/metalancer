@@ -30,7 +30,7 @@ export class SOR {
     MULTIADDR: { [chainId: number]: string } = {
         1: '0x514053acec7177e277b947b1ebb5c08ab4c4580e',
         42: '0x71c7f1086aFca7Aa1B0D4d73cfa77979d10D3210',
-        9000: ' :-( no customMulicall contract'
+        9000: ' :-( no customMulicall contract',
     };
 
     constructor(
@@ -130,8 +130,8 @@ export class SOR {
         SwapAmt: BigNumber
     ): Promise<[Swap[][], BigNumber, BigNumber]> {
         // The Subgraph returns tokens in lower case format so we must match this
-        TokenIn = TokenIn.toLowerCase();
-        TokenOut = TokenOut.toLowerCase();
+        // TokenIn = TokenIn.toLowerCase();
+        // TokenOut = TokenOut.toLowerCase();
         let swaps, total, marketSp;
 
         if (this.isAllFetched) {
@@ -218,7 +218,7 @@ export class SOR {
         }
 
         // Use previously stored value if exists else default to 0
-        let costOutputToken = this.tokenCost[TokenOut];
+        let costOutputToken = this.tokenCost[TokenOut.toLowerCase()];
         if (costOutputToken === undefined) {
             costOutputToken = new BigNumber(0);
         }
@@ -249,8 +249,8 @@ export class SOR {
         TokenIn: string,
         TokenOut: string
     ): Promise<boolean> {
-        TokenIn = TokenIn.toLowerCase();
-        TokenOut = TokenOut.toLowerCase();
+        // TokenIn = TokenIn.toLowerCase();
+        // TokenOut = TokenOut.toLowerCase();
 
         try {
             // Get all IPFS pools (with balance)

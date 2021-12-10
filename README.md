@@ -1,5 +1,5 @@
 ![image](https://user-images.githubusercontent.com/4420479/145579509-a72060c0-7728-4d74-b808-74ea231dd31f.png)
-#  evmos-balancer
+#  Evmos Balancer
 
 **Evmos** is a scalable and interoperable Ethereum, built on Proof-of-Stake with fast-finality.
 
@@ -21,7 +21,7 @@ Our ultimate goal is to **enable builders in Evmos community to jump start their
 
 ## Future work
 
-While working on this project, we came up with several interesting features we would like to implement in Balancer Evmos. 
+While working on this project, we came up with several interesting features we would like to implement in Evmos Balancer. 
 
 - on-chain smart order routing enabled by smaller gas costs on Evmos
 - introduction of "loyalty" liquidity staking that makes it more profitable to provide liquidity early and longer, increasing Evmos TVL

@@ -3,7 +3,9 @@ Balancer is an automated, on-chain portfolio manager and liquidity provider. Bal
 
 This project introduces battle-proven Balancer (Bronze realease) to the EVMos ecosystem. 
 
-The main goal of this project is to **enable anyone in EVMos community to jump start their own AMMs for EVMos, using secure, audited and well-tested Balancer's codebase**.
+The main goal of this project is to **enable builders in EVMos community to jump start their own DeFi products for EVMos, using secure, audited and well-tested Balancer's codebase**. 
+
+DeFI projects have 
 
 
 

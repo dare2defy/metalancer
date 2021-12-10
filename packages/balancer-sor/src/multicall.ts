@@ -45,11 +45,8 @@ export async function getAllPoolDataOnChain(
 
         let p: Pool = {
             id: pools.pools[i].id,
-            swapFee: bmath.scale(bmath.bnum(swapFee), 18),
-            totalWeight: bmath.scale(
-                bmath.bnum(getTotalDenormalizedWeight),
-                18
-            ),
+            swapFee: bmath.bnum(swapFee),
+            totalWeight: bmath.bnum(getTotalDenormalizedWeight),
             tokens: tokens,
             tokensList: tokensList,
         };

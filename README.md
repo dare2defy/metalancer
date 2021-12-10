@@ -131,14 +131,61 @@ To deploy contracts, run
 ```
 truffle migrate --network=evmos
 ```
+You will see the addresses of the contracts being deployed:
 
-After the deployment, run the deployment script:
+```
+Replacing 'Multicall'
+---------------------
+> transaction hash:    0x38dbe39600500ecbe96c8a46eaeaf5123d15e852eaa80dab5ccdc8fe2c3579ce
+> Blocks: 0            Seconds: 4
+> contract address:    0xcE436347AD0bc587124270C252eb97b08d5B8D85
+> block number:        84
+> block timestamp:     1638870510
+> account:             0x60802D4de8B902c05B4ebDECF810BEB1e22b35F1
+> balance:             599.94825417552949201
+> gas used:            428502 (0x689d6)
+> gas price:           2.500009 gwei
+> value sent:          0 ETH
+> total cost:          0.001071258856518 ETH
+
+
+Replacing 'BRegistry'
+---------------------
+> transaction hash:    0x57d749925e701eff754cee3de8e646f195d11c74211af23f2529c744dbfdd81f
+> Blocks: 0            Seconds: 0
+> contract address:    0x9C3df452aA11e624bE3423E47CF47a0f021E337A
+> block number:        85
+> block timestamp:     1638870515
+> account:             0x60802D4de8B902c05B4ebDECF810BEB1e22b35F1
+> balance:             599.943293606761328354
+> gas used:            1984253 (0x1e46fd)
+> gas price:           2.500009 gwei
+> value sent:          0 ETH
+> total cost:          0.004960650358277 ETH
+
+
+Replacing 'ExchangeProxy'
+-------------------------
+> transaction hash:    0x8ee7006559463e4bd6e05c1fb6e4fc8c0a32ad1ae82e14dd86daa3b5f229c0a1
+> Blocks: 0            Seconds: 4
+> contract address:    0x862c078A19F3c04b34c58F31de71326BDF600e82
+> block number:        87
+> block timestamp:     1638870525
+> account:             0x60802D4de8B902c05B4ebDECF810BEB1e22b35F1
+> balance:             599.935588569252761854
+> gas used:            3082030 (0x2f072e)
+> gas price:           2.500009 gwei
+> value sent:          0 ETH
+> total cost:          0.00770510273827 ETH
+```
+
+After the deployment, run the configuration script:
 
 ```
 truffle exec test/evmos-deploy.js --network=evmos
 ```
 
-This script will automaticall configue 3 tokens for a pool admin and 2 other users. More specifically, it this deployment script
+This script will automaticall configue 3 tokens for a pool admin and 2 other users. More specifically, it this configuration script does the following
 
 * mints 3 different tokens (symbols: `TOK1`,`TOK2`,`TOK3`) for users
 * creates a pool

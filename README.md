@@ -5,7 +5,7 @@
 
 **Balancer** is an automated, on-chain portfolio manager and liquidity provider. Balancer is based on an N-dimensional invariant surface which is a generalization of the constant product formula described by Vitalik Buterin.
 
-This project introduces battle-proven Balancer Bronze realease to the Evmos ecosystem. In a nutshell, it is **off-the-shelf stack for rapid prototyping of DeFi protocols on EVMos**, giving developers access to state-of-the-art core functionality of Balancer, without non-essential feautures such as advanced gas optimizations. Our ultimate goal is to **enable builders in EVMos community to jump start their own DeFi products for Evmos, using secure, audited and well-tested Balancer's codebase**. 
+This project introduces battle-proven Balancer Bronze realease to the Evmos ecosystem. In a nutshell, it is **off-the-shelf stack for rapid prototyping of DeFi protocols on Evmos**, giving developers access to state-of-the-art core functionality of Balancer, without non-essential feautures such as advanced gas optimizations. Our ultimate goal is to **enable builders in Evmos community to jump start their own DeFi products for Evmos, using secure, audited and well-tested Balancer's codebase**. 
 
 ## Summary of main contributions
 * We've built a monorepo for the Balancer's front-end dapp and all its packages. This allows EVMos builders' community to start working with Balancer's front-end and Smart Order Routing source code, with instant rebuild/reload tooling enabled. Orignial Balancer dapp imports most of the packages as node modules, making it hard to build on top of the Balacner's code base. 

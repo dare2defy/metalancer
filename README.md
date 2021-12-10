@@ -13,7 +13,7 @@ This project introduces battle-proven Balancer Bronze realease to the Evmos ecos
 * We've added Truffle deployment and configuration scripts for a turn-key launch of the Balancer on Evmos, including detailed tutorial on launching a single node local testnet. Previsously, there were only unit tests available as a source of information on how to deploy Balancer. 
 * We've added an ERC20 Wrapped Photon contract to support trading Photons, a native EVMos token.
 * We've rewamped balance retrival mechanism that relied on a custom multicall with no source code available. Balancer uses a custom multicall contract, which is not in Balancer's Github repo. This is a major show stopper for deployment of Balancer to Evmos. Our fork does not require this contract anymore.
-* We've introduced a spaceship to the frontpage to motivate you to build the next-big-DeFi protocol for Evmos ☺️
+* We've introduced a spaceship to the frontpage to motivate you to build the next-big-DeFi-protocol for Evmos ☺️
 
 # Configuring and running Balancer locally
 

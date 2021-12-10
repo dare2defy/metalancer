@@ -1,9 +1,11 @@
 # balancer-mono
 Balancer is an automated, on-chain portfolio manager and liquidity provider. Balancer is based on an N-dimensional invariant surface which is a generalization of the constant product formula described by Vitalik Buterin.
 
-This project introduces battle-proven Balancer (Bronze realease) to the EVMos ecosystem. 
+This project introduces battle-proven Balancer Bronze realease to the EVMos ecosystem. 
 
-The main goal of this project is to **enable builders in EVMos community to jump start their own DeFi products for EVMos, using secure, audited and well-tested Balancer's codebase**. 
+The goal of this projet is to **enable builders in EVMos community to jump start their own DeFi products for EVMos, using secure, audited and well-tested Balancer's codebase**. This repo is off-the-shelf stack for rapid prototyping of DeFi protocols on EVMos, giving developers access to state-of-the-art core functionality of Balancer, without 
+
+
 
 
 ## Our contribution

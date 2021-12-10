@@ -24,18 +24,51 @@ cd evmos
 make install
 ```
 
-
 Check that the evmosd binaries have been successfully installed:
 
 `evmosd version`
 
+Initialize a new node:
 
-./evmosd init testing --chain-id=evmos_9000-99 --home=./local
+`./evmosd init testing --chain-id=evmos_9000-99 --home=./local`
 
+Add a validator and 3 test users:
+
+```
 ./evmosd keys add my_validator --keyring-backend=test --home=./local
 ./evmosd keys add user1 --keyring-backend=test --home=./local
 ./evmosd keys add user2 --keyring-backend=test --home=./local
 ./evmosd keys add user3 --keyring-backend=test --home=./local
+```
+
+To see the keys and evmos (Bech32) addresses use:
+`./evmosd keys list --keyring-backend=test --home=./local`
+
+For example:
+```
+name: user3
+  type: local
+  address: evmos16hl88aqm2cftn8wc8xjl05wmy9ezem39j7pgkx
+  pubkey: '{"@type":"/ethermint.crypto.v1.ethsecp256k1.PubKey","key":"A0bOpRq6agNaTVvocj7gGueyAf3VhZN7839kh1newHtE"}'
+  mnemonic: ""
+```
+
+`User3` has address `evmos16hl88aqm2cftn8wc8xjl05wmy9ezem39j7pgkx`. To find a corresponding Ethereum-style address (EIP-55) for this Bech32 address, run:
+
+```
+./evmosd debug addr evmos16hl88aqm2cftn8wc8xjl05wmy9ezem39j7pgkx  --keyring-backend test --home=./local
+```
+
+Next, add genesis accounts for the validator and the users
+
+```
+./evmosd add-genesis-account my_validator 500000000000000000000stake,600000000000000000000aphoton --keyring-backend test --home=./local
+./evmosd add-genesis-account user1 99900000000000000000000aphoton --keyring-backend test --home=./local
+./evmosd add-genesis-account user2 8880000000000000000000aphoton --keyring-backend test --home=./local
+```
+
+
+
 
 
 # Building and Running Front-end

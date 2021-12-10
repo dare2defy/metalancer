@@ -266,3 +266,6 @@ lerna bootstrap
 cd packages/balancer-frontend
 npm run serve
 ```
+## Online demo
+
+Live online demo is available at http://dare2defy.xyz:8080

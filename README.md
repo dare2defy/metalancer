@@ -1,7 +1,7 @@
 # balancer-mono
 
 ## Changes made
-* Replaced Balancer's custom multicall contract. Balancer uses a custom multicall contract to retrieve pools' balances; however, there is no source code available, which is a major show stopper for deployment of Balancer to Evmos. Our fork does not require this contract anymore.
+* Re-write of calls to Balancer's custom multicall contract that had no source code available. Balancer uses a custom multicall contract, which is not in Balancer's Github repo. This is a major show stopper for deployment of Balancer to Evmos. Our fork does not require this contract anymore.
 * 
 
 

@@ -1,11 +1,13 @@
 ![image](https://user-images.githubusercontent.com/4420479/145579509-a72060c0-7728-4d74-b808-74ea231dd31f.png)
-# balancer-mono
+#  evmos-balancer
 
 **Evmos** is a scalable and interoperable Ethereum, built on Proof-of-Stake with fast-finality.
 
 **Balancer** is an automated, on-chain portfolio manager and liquidity provider. Balancer is based on an N-dimensional invariant surface which is a generalization of the constant product formula described by Vitalik Buterin.
 
-This project introduces battle-proven Balancer Bronze realease to the Evmos ecosystem. In a nutshell, it is **off-the-shelf stack for rapid prototyping of DeFi protocols on Evmos**, giving developers access to state-of-the-art core functionality of Balancer, without non-essential feautures such as advanced gas optimizations. Our ultimate goal is to **enable builders in Evmos community to jump start their own DeFi products for Evmos, using secure, audited and well-tested Balancer's codebase**. 
+This project introduces battle-proven Balancer Bronze realease to the Evmos ecosystem. In a nutshell, it is **off-the-shelf stack for rapid prototyping of DeFi protocols on Evmos**, giving developers access to state-of-the-art core functionality of Balancer, without non-essential feautures such as advanced gas optimizations. 
+
+Our ultimate goal is to **enable builders in Evmos community to jump start their own DeFi products for Evmos, using secure, audited and well-tested Balancer's codebase**. 
 
 ## Summary of main contributions
 * We've built a monorepo for the Balancer's front-end dapp and all its packages. This allows EVMos builders' community to start working with Balancer's front-end and Smart Order Routing source code, with instant rebuild/reload tooling enabled. Orignial Balancer dapp imports most of the packages as node modules, making it hard to build on top of the Balacner's code base. 
@@ -129,14 +131,61 @@ To deploy contracts, run
 ```
 truffle migrate --network=evmos
 ```
+You will see the addresses of the contracts being deployed:
 
-After the deployment, run the deployment script:
+```
+Replacing 'Multicall'
+---------------------
+> transaction hash:    0x38dbe39600500ecbe96c8a46eaeaf5123d15e852eaa80dab5ccdc8fe2c3579ce
+> Blocks: 0            Seconds: 4
+> contract address:    0xcE436347AD0bc587124270C252eb97b08d5B8D85
+> block number:        84
+> block timestamp:     1638870510
+> account:             0x60802D4de8B902c05B4ebDECF810BEB1e22b35F1
+> balance:             599.94825417552949201
+> gas used:            428502 (0x689d6)
+> gas price:           2.500009 gwei
+> value sent:          0 ETH
+> total cost:          0.001071258856518 ETH
+
+
+Replacing 'BRegistry'
+---------------------
+> transaction hash:    0x57d749925e701eff754cee3de8e646f195d11c74211af23f2529c744dbfdd81f
+> Blocks: 0            Seconds: 0
+> contract address:    0x9C3df452aA11e624bE3423E47CF47a0f021E337A
+> block number:        85
+> block timestamp:     1638870515
+> account:             0x60802D4de8B902c05B4ebDECF810BEB1e22b35F1
+> balance:             599.943293606761328354
+> gas used:            1984253 (0x1e46fd)
+> gas price:           2.500009 gwei
+> value sent:          0 ETH
+> total cost:          0.004960650358277 ETH
+
+
+Replacing 'ExchangeProxy'
+-------------------------
+> transaction hash:    0x8ee7006559463e4bd6e05c1fb6e4fc8c0a32ad1ae82e14dd86daa3b5f229c0a1
+> Blocks: 0            Seconds: 4
+> contract address:    0x862c078A19F3c04b34c58F31de71326BDF600e82
+> block number:        87
+> block timestamp:     1638870525
+> account:             0x60802D4de8B902c05B4ebDECF810BEB1e22b35F1
+> balance:             599.935588569252761854
+> gas used:            3082030 (0x2f072e)
+> gas price:           2.500009 gwei
+> value sent:          0 ETH
+> total cost:          0.00770510273827 ETH
+```
+
+After the deployment, run the configuration script:
 
 ```
 truffle exec test/evmos-deploy.js --network=evmos
 ```
 
-This script will automaticall configue 3 tokens for a pool admin and 2 other users. More specifically, it this deployment script
+This script will automaticall configue 3 tokens for a pool admin and 2 other users. More specifically, it this configuration script does the following
 
 * mints 3 different tokens (symbols: `TOK1`,`TOK2`,`TOK3`) for users
 * creates a pool
@@ -144,7 +193,7 @@ This script will automaticall configue 3 tokens for a pool admin and 2 other use
 * sets fees for the pool
 * enables swaps on the pool and finilizes the pool, so it can be used in publicly
 
-
+The sample output of the deployment script:
 
 ```
 Using network 'evmos'.
@@ -184,7 +233,27 @@ Finalized: true
 You will see the addresses of all major contracts, e.g. pool address: `0x9Cd06775B57218273A996c163dc817174F22E88a`. 
 
 
-## Building and Running Front-end
+## Configuring, building and running Front-end
+
+To configure the front-end dapp, edit `packages/balancer-frontend/src/config/evmos.json`.
+You need to change the contracts' addresses to the ones generated by the deployment scripts:  
+
+```
+    "addresses": {
+        "bFactory": "0x3bA74f689b11c8B7E6f7C37242500DbB7CC62AD6", 
+        "bActions": "0xde4A25A0b9589689945d842c5ba0CF4f0D4eB3ac", 
+        "dsProxyRegistry": "0x9C3df452aA11e624bE3423E47CF47a0f021E337A",
+        "exchangeProxy": "0x862c078A19F3c04b34c58F31de71326BDF600e82", 
+        "weth": "0xd4e1799d9624dC796A0e86B023fc27e47D1D0F50", 
+        "multicall": "0xcE436347AD0bc587124270C252eb97b08d5B8D85" 
+    },
+```
+
+Original Balancer uses SubGraph to fetch the list of pools. Because there are no similar indexing solutions for Evmos, the basic list of pools can be configured locally in `packages/balancer-frontend/src/assets/pools.json`. Note that all the information (balances, weights, etc) is still fetched from the blockchain. 
+
+![image](https://user-images.githubusercontent.com/4420479/145614234-b6e5bdf2-9033-4e84-9c18-7b426769d5c8.png)
+
+
 ### Build
 
 ```
@@ -192,7 +261,7 @@ npm install --global lerna
 lerna bootstrap
 ```
 
-## Run
+### Run
 ```
 cd packages/balancer-frontend
 npm run serve

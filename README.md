@@ -148,8 +148,8 @@ This script will automaticall configue 3 tokens for a pool admin and 2 other use
 
 
 
-# Building and Running Front-end
-## Build
+## Building and Running Front-end
+### Build
 
 ```
 npm install --global lerna

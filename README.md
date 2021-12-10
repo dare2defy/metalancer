@@ -17,6 +17,7 @@ This project introduces battle-proven Balancer Bronze realease to the Evmos ecos
 
 # Configuring and running Balancer locally
 
+## Running a local testnet
 Install and build Evmos (Evmos is built using Go version 1.17+):
 ```
 git clone https://github.com/tharsis/evmos.git
@@ -59,7 +60,7 @@ name: user3
 ./evmosd debug addr evmos16hl88aqm2cftn8wc8xjl05wmy9ezem39j7pgkx  --keyring-backend test --home=./local
 ```
 
-Next, add genesis accounts for the validator and the users
+Next, add genesis accounts for the validator and the users with initial Photon balances
 
 ```
 ./evmosd add-genesis-account my_validator 500000000000000000000stake,600000000000000000000aphoton --keyring-backend test --home=./local
@@ -101,6 +102,17 @@ Finally, launch a single node test net
 
 ```
 
+## Connecting Metamask to a local testnet
+
+Use the following network configuration
+
+![image](https://user-images.githubusercontent.com/4420479/145582342-ec894dd8-5525-4172-a718-0c43e2b6a9a9.png)
+
+To export a private key for Metamask, run
+
+```
+./evmosd keys unsafe-export-eth-key user1 --keyring-backend test --home=./local
+```
 
 
 

@@ -1,5 +1,4 @@
-![image](https://user-images.githubusercontent.com/4420479/145579341-d6eb9dcd-60ca-4884-b83b-5af7944ad79c.png)
-
+![image](https://user-images.githubusercontent.com/4420479/145579509-a72060c0-7728-4d74-b808-74ea231dd31f.png)
 # balancer-mono
 
 

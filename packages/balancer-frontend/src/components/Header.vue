@@ -9,12 +9,12 @@
                 <div>#{{ commitLabel }}</div>
             </a>
             <div class="page-links">
-                <div class="link active">
+                <!-- <div class="link active">
                     Trade
-                </div>
-                <a class="link" href="https://pools.balancer.exchange" target="_blank">
+                </div> -->
+                <!-- <a class="link" href="https://pools.balancer.exchange" target="_blank">
                     Invest
-                </a>
+                </a> -->
             </div>
         </div>
         <div class="header-right">

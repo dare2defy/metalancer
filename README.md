@@ -1,6 +1,5 @@
 ![image](https://user-images.githubusercontent.com/4420479/145579509-a72060c0-7728-4d74-b808-74ea231dd31f.png)
 #  evmos-balancer
-![image](https://user-images.githubusercontent.com/4420479/145617234-46e1093d-bcfc-4bc8-8aa9-94423dabd632.png)
 
 **Evmos** is a scalable and interoperable Ethereum, built on Proof-of-Stake with fast-finality.
 
@@ -10,13 +9,15 @@ This project introduces battle-proven Balancer Bronze realease to the Evmos ecos
 
 Our ultimate goal is to **enable builders in Evmos community to jump start their own DeFi products for Evmos, using secure, audited and well-tested Balancer's codebase**. 
 
+![image](https://user-images.githubusercontent.com/4420479/145617234-46e1093d-bcfc-4bc8-8aa9-94423dabd632.png)
+
 ## Summary of main contributions
 * We've built a monorepo for the Balancer's front-end dapp and all its packages. This allows EVMos builders' community to start working with Balancer's front-end and Smart Order Routing source code, with instant rebuild/reload tooling enabled. Orignial Balancer dapp imports most of the packages as node modules, making it hard to build on top of the Balacner's code base. 
 * We've gathered all the necessary contracts in one a single repo (mutlicall, router, pool registry contracts). Previously, they were scattered around several different GitHub repos with no clear links between them, i.e. it was unclear what contracts are required, what versions were compatible, etc. Now everything is in complete synch and is deployment-ready.
 * We've added Truffle deployment and configuration scripts for a turn-key launch of the Balancer on Evmos, including detailed tutorial on launching a single node local testnet. Previsously, there were only unit tests available as a source of information on how to deploy Balancer. 
 * We've added an ERC20 Wrapped Photon contract to support trading Photons, a native EVMos token.
 * We've revamped balance retrival mechanism that relied on a custom multicall with no source code available. Balancer uses a custom multicall contract, which is not in Balancer's Github repo. This is a major show stopper for deployment of Balancer to Evmos. Our fork does not require this contract anymore.
-* We've introduced a spaceship to the frontpage to motivate you to build the next-big-DeFi-protocol for Evmos ☺️
+* We've introduced a "to-the-moon" spaceship to the frontpage to encourage you to build the next-big-DeFi-protocol for Evmos ☺️
 
 ## Future work
 

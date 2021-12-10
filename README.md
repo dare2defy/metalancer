@@ -1,4 +1,5 @@
 #  Evmos Balancer
+![image](https://user-images.githubusercontent.com/4420479/145617234-46e1093d-bcfc-4bc8-8aa9-94423dabd632.png)
 
 **Evmos** is a scalable and interoperable Ethereum, built on Proof-of-Stake with fast-finality.
 
@@ -8,7 +9,6 @@ This project introduces battle-proven Balancer Bronze realease to the Evmos ecos
 
 Our ultimate goal is to **enable builders in Evmos community to jump start their own DeFi products for Evmos, using secure, audited and well-tested Balancer's codebase**. 
 
-![image](https://user-images.githubusercontent.com/4420479/145617234-46e1093d-bcfc-4bc8-8aa9-94423dabd632.png)
 
 ## Summary of main contributions
 * We've built a monorepo for the Balancer's front-end dapp and all its packages. This allows EVMos builders' community to start working with Balancer's front-end and Smart Order Routing source code, with instant rebuild/reload tooling enabled. Orignial Balancer dapp imports most of the packages as node modules, making it hard to build on top of the Balacner's code base. 

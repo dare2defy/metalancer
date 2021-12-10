@@ -8,7 +8,7 @@
 This project introduces battle-proven Balancer Bronze realease to the Evmos ecosystem. In a nutshell, it is **off-the-shelf stack for rapid prototyping of DeFi protocols on EVMos**, giving developers access to state-of-the-art core functionality of Balancer, without non-essential feautures such as advanced gas optimizations. Our ultimate goal is to **enable builders in EVMos community to jump start their own DeFi products for Evmos, using secure, audited and well-tested Balancer's codebase**. 
 
 ## Summary of main contributions
-* We've build a monorepo for the Balancer's front-end dapp and all its packages. This allows EVMos builders' community to start working with Balancer's front-end and Smart Order Routing source code, with instant rebuild/reload tooling enabled. Orignial Balancer dapp imports most of the packages as node modules, making it hard to build on top of the Balacner's code base. 
+* We've built a monorepo for the Balancer's front-end dapp and all its packages. This allows EVMos builders' community to start working with Balancer's front-end and Smart Order Routing source code, with instant rebuild/reload tooling enabled. Orignial Balancer dapp imports most of the packages as node modules, making it hard to build on top of the Balacner's code base. 
 * We've gathered all the necessary contracts in one a single repo (mutlicall, router, pool registry contracts). Previously, they were scattered around several different GitHub repos with no clear links between them, i.e. it was unclear what contracts are required, what versions were compatible, etc. Now everything is in complete synch and is deployment-ready.
 * We've added Truffle deployment and configuration scripts for a turn-key launch of the Balancer on Evmos, including detailed tutorial on launching a single node local testnet. Previsously, there were only unit tests available as a source of information on how to deploy Balancer. 
 * We've added an ERC20 Wrapped Photon contract to support trading Photons, a native EVMos token.
@@ -114,7 +114,14 @@ To export a private key for Metamask, run
 ./evmosd keys unsafe-export-eth-key user1 --keyring-backend test --home=./local
 ```
 
-## Deploying contracts
+## Building and deploying contracts
+
+First, install the dependencies
+```
+cd contracts
+npm install 
+```
+
 
 
 

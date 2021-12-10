@@ -1,5 +1,5 @@
 ![image](https://user-images.githubusercontent.com/4420479/145579509-a72060c0-7728-4d74-b808-74ea231dd31f.png)
-# balancer-mono
+#  evmos-balancer
 
 **Evmos** is a scalable and interoperable Ethereum, built on Proof-of-Stake with fast-finality.
 

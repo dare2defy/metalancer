@@ -116,11 +116,33 @@ To export a private key for Metamask, run
 
 ## Building and deploying contracts
 
-First, install the dependencies
+First, install [Truffle](http://trufflesuite.com/tutorial/index.html) and the dependencies
+
 ```
+npm install -g truffle
 cd contracts
 npm install 
 ```
+
+To deploy contracts, run
+
+```
+truffle migrate --network=evmos
+```
+
+After the deployment, run the deployment script:
+
+```
+truffle exec test/evmos-deploy.js --network=evmos
+```
+
+This script will automaticall configue 3 tokens for a pool admin and 2 other users. More specifically, it this deployment script
+
+* mints 3 different tokens (symbols: `TOK1`,`TOK2`,`TOK3`) for users
+* creates a pool
+* provides liquidity for the pool
+* sets fees for the pool
+* enables swaps on the pool and finilizes the pool, so it can be used in publicly
 
 
 

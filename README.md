@@ -19,9 +19,9 @@ This project introduces battle-proven Balancer Bronze realease to the Evmos ecos
 
 Install and build Evmos (Evmos is built using Go version 1.17+):
 
-```git clone https://github.com/tharsis/evmos.git
+``git clone https://github.com/tharsis/evmos.git
 cd evmos
-make install```
+make install``
 
 Check that the evmosd binaries have been successfully installed:
 

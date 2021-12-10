@@ -5,7 +5,7 @@
         <div class="pair">
             <div class="header">
                 <div class="header-text">
-                    Swap0
+                    Swap tokens
                 </div>
                 <Settings />
             </div>

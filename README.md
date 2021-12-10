@@ -146,7 +146,7 @@ This script will automaticall configue 3 tokens for a pool admin and 2 other use
 * sets fees for the pool
 * enables swaps on the pool and finilizes the pool, so it can be used in publicly
 
-
+The sample output of the deployment script:
 
 ```
 Using network 'evmos'.

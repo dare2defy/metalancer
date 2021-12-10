@@ -1,6 +1,6 @@
-import homestead from './homestead.json';
-import kovan from './kovan.json';
-import dare2defy from './dare2defy.json'
+import homestead from "./homestead.json";
+import kovan from "./kovan.json";
+import evmos from "./evmos.json";
 
 interface Connector {
     id: string;
@@ -40,19 +40,19 @@ interface Config {
 const configs = {
     1: {
         untrusted: [],
-        ...homestead,
+        ...homestead
     },
-    42:{
+    42: {
         untrusted: [],
-        ...kovan,
+        ...kovan
     },
-    1337:{
+    1337: {
         untrusted: [],
-        ...dare2defy,
+        ...evmos
     },
     9000: {
         untrusted: [],
-        ...dare2defy,
+        ...evmos
     }
 };
 // eslint-disable-next-line no-undef

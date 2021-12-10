@@ -67,6 +67,39 @@ Next, add genesis accounts for the validator and the users
 ./evmosd add-genesis-account user2 8880000000000000000000aphoton --keyring-backend test --home=./local
 ```
 
+Declare a validator via `gentx` transaction:
+```
+./evmosd gentx my_validator 1000000stake --home=./local --keyring-backend=test --chain-id=evmos_9000-99 \
+    --moniker="myvalidator" \
+    --commission-max-change-rate=0.01 \
+    --commission-max-rate=1.0 \
+    --commission-rate=0.07 \
+    --details="..." \
+    --security-contact="..." \
+    --website="..."
+```
+
+Collect all genesis transactions and validate them:
+
+```
+./evmosd validate-genesis --home=./local
+./evmosd collect-gentxs --home=./local`
+```
+
+Make sure that `evmosd` is configured to use the correct `home`, keyring and chain-id:
+
+```
+./evmosd config --home=./local
+./evmosd config keyring-backend test --home=./local
+./evmosd config chain-id evmos_9000-99 --home=./local
+```
+
+Finally, launch a single node test net
+
+```
+./evmosd start --keyring-backend=test --home=./local --pruning=nothing --minimum-gas-prices=0.0001aphoton --json-rpc.api eth,txpool,personal,net,debug,web3
+
+```
 
 
 

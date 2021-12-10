@@ -17,6 +17,16 @@ Our ultimate goal is to **enable builders in Evmos community to jump start their
 * We've revamped balance retrival mechanism that relied on a custom multicall with no source code available. Balancer uses a custom multicall contract, which is not in Balancer's Github repo. This is a major show stopper for deployment of Balancer to Evmos. Our fork does not require this contract anymore.
 * We've introduced a spaceship to the frontpage to motivate you to build the next-big-DeFi-protocol for Evmos ☺️
 
+## Future work
+
+We have a to try several intersting improvements that would make Evmos DeFi  
+
+- combination of off-chain/on-chain smart order routing via shared Rust code, i.e. we want to leverage the ability to execute on-chain Rust code as a part of the contract and/or off-chain in browser as a WebAssembly module
+
+- introduction of "loyalty" liquidity staking that makes it more profitable to provide liquidity early and longer.
+
+- more user friendly user investment experience for newbie, e.g. pools that correspond to mid-to-long term investment strategies, e.g. "invest in Metaverse", "invest in L2" , "invest in DeFi", "invest in stables"
+
 # Configuring and running Balancer locally
 
 ## Running a local testnet

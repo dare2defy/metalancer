@@ -266,12 +266,17 @@ Original Balancer uses SubGraph to fetch the list of pools. Because there are no
 
 ### Build 
 
+To build front-end run:
+
 ```
 npm install --global lerna
 lerna bootstrap
 ```
 
 ### Run
+
+To launch Balancer dapp, execute:
+
 ```
 cd packages/balancer-frontend
 npm run serve

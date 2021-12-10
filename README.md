@@ -19,13 +19,11 @@ Our ultimate goal is to **enable builders in Evmos community to jump start their
 
 ## Future work
 
-We have a to try several intersting improvements that would make Evmos DeFi  
+While working on this project, we came up with several interesting features we would like to implement in Balancer Evmos. 
 
-- combination of off-chain/on-chain smart order routing via shared Rust code, i.e. we want to leverage the ability to execute on-chain Rust code as a part of the contract and/or off-chain in browser as a WebAssembly module
-
-- introduction of "loyalty" liquidity staking that makes it more profitable to provide liquidity early and longer.
-
-- more user friendly user investment experience for newbie, e.g. pools that correspond to mid-to-long term investment strategies, e.g. "invest in Metaverse", "invest in L2" , "invest in DeFi", "invest in stables"
+- on-chain smart order routing enabled by smaller gas costs on Evmos
+- introduction of "loyalty" liquidity staking that makes it more profitable to provide liquidity early and longer, increasing Evmos TVL
+- more user friendly user investment experience for those who are new to cryptoassets, e.g. pools that correspond to mid-to-long term portfolio investment strategies, e.g. "invest in Metaverse", "invest in L2" , "invest in DeFi", "invest in stables"
 
 # Configuring and running Balancer locally
 

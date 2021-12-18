@@ -1,18 +1,9 @@
 <template>
     <div class="asset-input">
-        <div
-            class="asset-wrapper"
-            @click="openModal"
-        >
+        <div class="asset-wrapper" @click="openModal">
             <div class="asset-meta">
-                <AssetIcon
-                    class="asset-icon"
-                    :address="address"
-                />
-                <span
-                    v-if="symbol.length <= 10"
-                    class="asset-symbol"
-                >
+                <CoinIcon class="asset-icon" :address="address" />
+                <span v-if="symbol.length <= 10" class="asset-symbol">
                     {{ symbol }}
                 </span>
                 <Tooltip v-else>
@@ -24,18 +15,12 @@
                     </template>
                 </Tooltip>
             </div>
-            <Icon
-                class="chevron-icon"
-                :title="'chevron'"
-            />
+            <Icon class="chevron-icon" :title="'chevron'" />
         </div>
         <div class="amount-wrapper">
             <div class="amount">
                 <div class="input-wrapper">
-                    <div
-                        v-if="loading"
-                        class="loading"
-                    />
+                    <div v-if="loading" class="loading" />
                     <input
                         v-else
                         :value="amount"
@@ -43,7 +28,7 @@
                         placeholder="0"
                         type="number"
                         @input="handleInputChange($event.target.value)"
-                    >
+                    />
                     <ButtonText
                         v-if="isMaxLabelShown"
                         :text="'max'"
@@ -55,7 +40,7 @@
                     class="label"
                     :class="{
                         warning: label.style === LabelStyle.Warning,
-                        error: label.style === LabelStyle.Error,
+                        error: label.style === LabelStyle.Error
                     }"
                 >
                     {{ label.text }}
@@ -66,17 +51,17 @@
 </template>
 
 <script lang="ts">
-import BigNumber from 'bignumber.js';
-import { PropType, defineComponent, computed } from 'vue';
-import { useStore } from 'vuex';
+import BigNumber from "bignumber.js";
+import { PropType, defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 
-import { RootState } from '@/store';
-import { ETH_KEY, scale } from '@/utils/helpers';
+import { RootState } from "@/store";
+import { ETH_KEY, scale } from "@/utils/helpers";
 
-import AssetIcon from '@/components/AssetIcon.vue';
-import ButtonText from '@/components/ButtonText.vue';
-import Icon from '@/components/Icon.vue';
-import Tooltip from '@/components/Tooltip.vue';
+import CoinIcon from "@/components/CoinIcon.vue";
+import ButtonText from "@/components/ButtonText.vue";
+import Icon from "@/components/Icon.vue";
+import Tooltip from "@/components/Tooltip.vue";
 
 export interface Label {
     text: string;
@@ -86,62 +71,62 @@ export interface Label {
 export enum LabelStyle {
     Normal,
     Warning,
-    Error,
+    Error
 }
 
 export default defineComponent({
     components: {
-        AssetIcon,
+        CoinIcon,
         ButtonText,
         Icon,
-        Tooltip,
+        Tooltip
     },
     props: {
         modalKey: {
             type: String,
-            required: true,
+            required: true
         },
         address: {
             type: String,
-            required: true,
+            required: true
         },
         amount: {
             type: String,
-            required: true,
+            required: true
         },
         label: {
             type: Object as PropType<Label>,
             default: {
-                text: '',
-                style: LabelStyle.Normal,
-            },
+                text: "",
+                style: LabelStyle.Normal
+            }
         },
         loading: {
             type: Boolean,
-            default: false,
-        },
+            default: false
+        }
     },
-    emits: ['change'],
+    emits: ["change"],
     setup(props, { emit }) {
         const store = useStore<RootState>();
 
         const symbol = computed(() => {
-            const assets = store.getters['assets/metadata'];
+            const assets = store.getters["assets/metadata"];
             const asset = assets[props.address];
             if (!asset) {
-                return '';
+                return "";
             }
             return asset.symbol;
         });
 
         const isMaxLabelShown = computed(() => {
-            if (props.modalKey !== 'input') {
+            if (props.modalKey !== "input") {
                 return false;
             }
             if (props.address === ETH_KEY) {
                 return false;
             }
-            const assets = store.getters['assets/metadata'];
+            const assets = store.getters["assets/metadata"];
             const { balances } = store.state.account;
             if (!balances) {
                 return false;
@@ -155,7 +140,7 @@ export default defineComponent({
         });
 
         function setMax(): void {
-            const assets = store.getters['assets/metadata'];
+            const assets = store.getters["assets/metadata"];
             const { balances } = store.state.account;
             const balance = balances[props.address];
             const assetDecimals = assets[props.address].decimals;
@@ -166,11 +151,11 @@ export default defineComponent({
         }
 
         function handleInputChange(value: string): void {
-            emit('change', value);
+            emit("change", value);
         }
 
         function openModal(): void {
-            store.dispatch('ui/openAssetModal', props.modalKey);
+            store.dispatch("ui/openAssetModal", props.modalKey);
         }
 
         return {
@@ -180,9 +165,9 @@ export default defineComponent({
             isMaxLabelShown,
             setMax,
             handleInputChange,
-            openModal,
+            openModal
         };
-    },
+    }
 });
 </script>
 

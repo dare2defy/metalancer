@@ -15,12 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "vue";
-
-import Storage from "@/utils/storage";
-
-import Account from "@/components/Account.vue";
-import Icon from "@/components/Icon.vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({});
 </script>

@@ -4,3 +4,4 @@ package-lock.json
 
 .idea
 packages/ethcall/package-lock.json
+node_modules

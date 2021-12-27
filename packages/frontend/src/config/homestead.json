@@ -1,0 +1,40 @@
+{
+  "network": 9000,
+  "chainId": 9000,
+  "precision": 18,
+  "infuraKey": "n/a 237c3102f39b4940abbe12dc49165cd6np",
+  "alchemyKey": "n/a cQGZUiTLRCFsQS7kbRxPJK4eH4fTTu88",
+  "subgraphUrl": "n/a https://api.thegraph.com/subgraphs/name/balancer-labs/balancer",
+  "subgraphBackupUrl": "n/a https://ipfs.fleek.co/ipns/balancer-bucket.storage.fleek.co/balancer-exchange/pools",
+  "addresses": {
+    "bFactory": "0x88f062c7562BD50aAedbC02161403De2136C4d80",
+    "bActions": "0xde4A25A0b9589689945d842c5ba0CF4f0D4eB3ac",
+    "dsProxyRegistry": "0x4678f0a6958e4D2Bc4F1BAF7Bc52E8F3564f3fE4",
+    "exchangeProxy": "0xcAEBE3779C796D8b5F0C5D818000Dd54C4A338C1",
+    "weth": "0xa2682403Ed98D98669E71184D6ee7f3cB606C45d",
+    "multicall": "0x45Adef25edCb817260B788856bdcA2609aFC676c"
+  },
+  "connectors": {
+    "injected": {
+      "9000": "http://127.0.0.1:8545"
+    },
+    "walletconnect": {
+      "rpc": {
+        "9000": "http://127.0.0.1:8545"
+      }
+    },
+    "portis": {
+      "network": "n/a mainnet",
+      "dappId": "n/a 3f1c3cfc-7dd5-4e8a-aa03-71ff7396d9fe"
+    },
+    "walletlink": {
+      "appName": "Balancer Exchange",
+      "darkMode": true,
+      "chainId": 9000,
+      "ethJsonrpcUrl": "http://127.0.0.1:8545"
+    },
+    "fortmatic": {
+      "apiKey": "n/a pk_live_9CE8FD92E54684ED"
+    }
+  }
+}

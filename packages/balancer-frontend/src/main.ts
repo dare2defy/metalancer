@@ -1,36 +1,36 @@
-import { createApp } from 'vue';
-import { createWebHashHistory, createRouter } from 'vue-router';
-import store from './store';
-import '@/utils/fathom';
+import { createApp } from "vue";
+import { createWebHashHistory, createRouter } from "vue-router";
+import store from "./store";
+import "@/utils/fathom";
 
-import App from './App.vue';
+import App from "./App.vue";
 
-import Swap from './pages/Swap.vue';
+import Swap from "./pages/Swap.vue";
+import SecondPage from "./pages/SecondPage.vue";
+import About from "./pages/About.vue";
 
 const routerHistory = createWebHashHistory();
 const router = createRouter({
     history: routerHistory,
     routes: [
-        { path: '/', redirect: '/swap' },
-        { path: '/swap/:assetIn?/:assetOut?', name: 'swap', component: Swap },
-    ],
+        { path: "/", redirect: "/swap" },
+        { path: "/swap/:assetIn?/:assetOut?", name: "swap", component: Swap },
+        { path: "/second-page", name: "second-page", component: SecondPage },
+        { path: "/about", name: "about", component: About }
+    ]
 });
 
 const app = createApp(App);
 
-app.directive('autofocus', {
+app.directive("autofocus", {
     mounted(el) {
         el.focus();
-    },
+    }
 });
 
 app.use(router);
 app.use(store);
 
-app.mount('#app');
+app.mount("#app");
 
-export {
-    routerHistory,
-    router,
-    store,
-};
+export { routerHistory, router, store };

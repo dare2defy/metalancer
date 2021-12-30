@@ -15,7 +15,7 @@ const router = createRouter({
     routes: [
         { path: "/", redirect: "/swap" },
         { path: "/swap/:assetIn?/:assetOut?", name: "swap", component: Swap },
-        { path: "/second-page", name: "second-page", component: SecondPage },
+        { path: "/invest", name: "invest", component: SecondPage },
         { path: "/about", name: "about", component: About }
     ]
 });

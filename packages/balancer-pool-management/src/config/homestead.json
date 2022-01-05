@@ -1,0 +1,60 @@
+{
+  "network": "homestead",
+  "chainId": 1,
+  "defaultPrecision": 2,
+  "rpcUrl": "https://mainnet.infura.io/v3/03f1a9a53dee4bd5a7d3dde58ce26442",
+  "wsUrl": "wss://mainnet.infura.io/ws/v3/03f1a9a53dee4bd5a7d3dde58ce26442",
+  "subgraphUrl": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-beta",
+  "explorer": "https://etherscan.io",
+  "exchangeUrl": "https://balancer.exchange",
+  "addresses": {
+    "bFactory": "0x9424B1412450D0f8Fc2255FAf6046b98213B76Bd",
+    "bActions": "0xC27D3C1dDE27Fc79Acbbe76A90eBdfF3ef164660",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "dsProxyRegistry": "0x4678f0a6958e4D2Bc4F1BAF7Bc52E8F3564f3fE4",
+    "proxy": "0x2633Dc6F65f293FdC47206beEf1FC9BD6C63edFF",
+    "crpFactory": "0xed52D8E202401645eDAD1c0AA21e872498ce47D0",
+    "weth": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "multicall": "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
+  },
+  "connectors": {
+    "injected": {
+      "id": "injected",
+      "name": "MetaMask"
+    },
+    "walletconnect": {
+      "id": "walletconnect",
+      "name": "WalletConnect",
+      "options": {
+        "rpc": {
+          "1": "https://cloudflare-eth.com"
+        }
+      }
+    },
+    "portis": {
+      "id": "portis",
+      "name": "Portis",
+      "options": {
+        "network": "mainnet",
+        "dappId": "3f1c3cfc-7dd5-4e8a-aa03-71ff7396d9fe"
+      }
+    },
+    "walletlink": {
+      "id": "walletlink",
+      "name": "Coinbase",
+      "options": {
+        "appName": "Pool management - Balancer",
+        "darkMode": true,
+        "chainId": 1,
+        "ethJsonrpcUrl": "https://cloudflare-eth.com"
+      }
+    },
+    "fortmatic": {
+      "id": "fortmatic",
+      "name": "Fortmatic",
+      "options": {
+        "apiKey": "pk_live_9CE8FD92E54684ED"
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+@font-face {
+    font-family: "iconfont";
+    src: url("./iconfont.eot?849793b4cfe5a26ed41926c5d38a73dc?#iefix") format("embedded-opentype"),
+url("./iconfont.woff2?849793b4cfe5a26ed41926c5d38a73dc") format("woff2"),
+url("./iconfont.woff?849793b4cfe5a26ed41926c5d38a73dc") format("woff"),
+url("./iconfont.ttf?849793b4cfe5a26ed41926c5d38a73dc") format("truetype"),
+url("./iconfont.svg?849793b4cfe5a26ed41926c5d38a73dc#iconfont") format("svg");
+}
+
+i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: iconfont !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-down:before {
+    content: "\f101";
+}
+.icon-arrow-up:before {
+    content: "\f102";
+}
+.icon-back:before {
+    content: "\f103";
+}
+.icon-bullet:before {
+    content: "\f104";
+}
+.icon-check:before {
+    content: "\f105";
+}
+.icon-checkbox-off:before {
+    content: "\f106";
+}
+.icon-checkbox-on:before {
+    content: "\f107";
+}
+.icon-close:before {
+    content: "\f108";
+}
+.icon-external-link:before {
+    content: "\f109";
+}
+.icon-github:before {
+    content: "\f10a";
+}
+.icon-go:before {
+    content: "\f10b";
+}
+.icon-info:before {
+    content: "\f10c";
+}
+.icon-lock:before {
+    content: "\f10d";
+}
+.icon-menu:before {
+    content: "\f10e";
+}
+.icon-plus:before {
+    content: "\f10f";
+}
+.icon-receipt-outlined:before {
+    content: "\f110";
+}
+.icon-search:before {
+    content: "\f111";
+}
+.icon-signature:before {
+    content: "\f112";
+}
+.icon-unlock:before {
+    content: "\f113";
+}
+.icon-user:before {
+    content: "\f114";
+}
+.icon-wallet:before {
+    content: "\f115";
+}
+.icon-warning:before {
+    content: "\f116";
+}

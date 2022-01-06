@@ -1,7 +1,6 @@
 {
-  "name": "pool-management-vue",
-  "version": "0.1.0",
-  "repository": "balancer-labs/pool-management-vue",
+  "name": "balancer-pool-management",
+  "version": "0.9.0",
   "license": "GPL-3.0",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -13,7 +12,7 @@
     "generate-icons": "icon-font-generator src/assets/fonts/icons/*.svg -o src/assets/fonts --name iconfont --html false"
   },
   "dependencies": {
-    "@balancer-labs/assets": "github:balancer-labs/assets#master",
+    "balancer-assets": "1.0.0-1",
     "@balancer-labs/sor2": "github:balancer-labs/balancer-sor#john/rc03-package",
     "@ethersproject/abi": "5.0.1",
     "@ethersproject/address": "5.0.1",

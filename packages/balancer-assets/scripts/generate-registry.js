@@ -177,11 +177,11 @@ async function getNetworkMetadata(network, tokens, overwrite) {
   const multicallContract = {
     // kovan: '0x2cc8688C5f75E365aaEEb4ea8D6a480405A48D2A',
     // homestead: '0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441',
-    dare2defy: "0x06B049da8E6E744cE4A3Ff58C5f69209A6b6dcb5"
+    dare2defy: "0x3121E9C65C15818f9d5a403C7776E55cfcF8Aee9"
   };
 
   const provider = providers[network];
-  const multicallAddress = "0x06B049da8E6E744cE4A3Ff58C5f69209A6b6dcb5";
+  const multicallAddress = "0x3121E9C65C15818f9d5a403C7776E55cfcF8Aee9";
 
   const multi = new ethers.Contract(multicallAddress, multicall.abi, provider);
   const calls = [];
@@ -195,9 +195,9 @@ async function getNetworkMetadata(network, tokens, overwrite) {
   const [, response] = await multi.aggregate(calls);
 
   let testTokens = [
-    "0xC46fF5607982F297c53d456cf152BA9b56D7eE96",
-    "0x4E798a4F2c92D63337611170fe0b6F19097bf062",
-    "0x1f63AB307e2D74875A94f0c49CcEa73CCB34A574"
+    "0x47AF69C820b672452a10FE2d04B78eEC026d0A99",
+    "0x364A4FC192F13fB132767dAD3a2974E110995Bf9",
+    "0x491d38073966A86d7FB2e21519C3d3C18bC51067"
   ];
 
   for (let i = 0; i < testTokens.length; i++) {

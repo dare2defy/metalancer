@@ -42,7 +42,7 @@ function getAddress(chainId: number): string {
 		42: '0x2cc8688c5f75e365aaeeb4ea8d6a480405a48d2a',
 		100: '0xb5b692a88bdfc81ca69dcb1d924f59f0413a602a',
 		1337: '0x77dca2c955b15e9de4dbbcf1246b4b85b651e50e',
-		9000: '0xcE436347AD0bc587124270C252eb97b08d5B8D85'
+		9000: '0x3121E9C65C15818f9d5a403C7776E55cfcF8Aee9'
 	};
 	const address = addressMap[chainId];
 	console.log("multicall address for " + chainId + " is " + address)

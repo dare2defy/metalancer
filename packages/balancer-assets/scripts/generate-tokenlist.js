@@ -6,6 +6,8 @@ const fs = require("fs");
 const multicall = require("../abi/Multicall.json");
 const erc20 = require("../abi/ERC20.json");
 
+const evmosTestnetChainId = "9000"
+
 async function run() {
   try {
     const listedFile = await fs.readFileSync("lists/listed.json");
@@ -68,56 +70,45 @@ async function getData() {
 }
 
 async function getMetadata(tokens, overwrite) {
-  const kovan = await getNetworkMetadata(
-    "kovan",
-    tokens.kovan,
-    overwrite.kovan
-  );
-  const homestead = await getNetworkMetadata(
-    "homestead",
-    tokens.homestead,
-    overwrite.homestead
+  const evmosTestnet = await getNetworkMetadata(
+    evmosTestnetChainId,
+    tokens[evmosTestnetChainId],
+    overwrite[evmosTestnetChainId]
   );
 
   return {
-    kovan,
-    homestead
+    "9000": evmosTestnet
   };
 }
 
 async function getNetworkMetadata(network, tokens, overwrite) {
   console.log("tokenlist :: getNetworkMetadata");
-  const infuraKey = "93e3393c76ed4e1f940d0266e2fdbda2";
 
   const providers = {
-    kovan: new ethers.providers.InfuraProvider("kovan", infuraKey),
-    homestead: new ethers.providers.InfuraProvider("homestead", infuraKey)
+    "9000": new ethers.providers.JsonRpcProvider("https://ethereum.rpc.evmos.dev")
   };
 
   const multicallContract = {
-    kovan: "0x2cc8688C5f75E365aaEEb4ea8D6a480405A48D2A",
-    homestead: "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
+    "9000": "0x3121E9C65C15818f9d5a403C7776E55cfcF8Aee9",
   };
 
   const provider = providers[network];
-  const multicallAddress = "0x06B049da8E6E744cE4A3Ff58C5f69209A6b6dcb5";
+  const multicallAddress = multicallContract[network];
 
   const multi = new ethers.Contract(multicallAddress, multicall.abi, provider);
   const calls = [];
   const erc20Contract = new ethers.utils.Interface(erc20.abi);
-  tokens.forEach(token => {
+  
+  Object.keys(tokens).forEach(token => {
     calls.push([token, erc20Contract.encodeFunctionData("decimals", [])]);
     calls.push([token, erc20Contract.encodeFunctionData("symbol", [])]);
     calls.push([token, erc20Contract.encodeFunctionData("name", [])]);
   });
+
   const tokenMetadata = {};
   const [, response] = await multi.aggregate(calls);
 
-  let testTokens = [
-    "0xC46fF5607982F297c53d456cf152BA9b56D7eE96",
-    "0x4E798a4F2c92D63337611170fe0b6F19097bf062",
-    "0x1f63AB307e2D74875A94f0c49CcEa73CCB34A574"
-  ];
+  let testTokens = Object.keys(tokens);
 
   for (let i = 0; i < testTokens.length; i++) {
     const address = testTokens[i];
@@ -148,22 +139,10 @@ async function getNetworkMetadata(network, tokens, overwrite) {
 
 function getTokens(data, metadata) {
   const tokens = [];
-  for (const address in metadata.homestead) {
-    const chainId = 1;
-    const token = metadata.homestead[address];
-    const { decimals, symbol, name } = token;
-    tokens.push({
-      address,
-      chainId,
-      name,
-      symbol,
-      decimals,
-      logoURI: getLogoURI(data.assets, address)
-    });
-  }
-  for (const address in metadata.kovan) {
-    const chainId = 42;
-    const token = metadata.kovan[address];
+  const chainName = "9000";
+  const chainId = 9000;
+  for (const address in metadata[chainName]) {
+    const token = metadata[chainName][address];
     const { decimals, symbol, name } = token;
     tokens.push({
       address,

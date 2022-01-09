@@ -2,12 +2,12 @@ import { AlchemyProvider, InfuraProvider, JsonRpcProvider } from '@ethersproject
 
 import config from '@/config';
 
-const provider = new JsonRpcProvider("http://dare2defy.xyz:8545");
+const provider = new JsonRpcProvider("https://ethereum.rpc.evmos.dev");
  
 //new InfuraProvider(config.network, config.infuraKey);
 
 export default provider;
 
-const debugProvider = new JsonRpcProvider("http://dare2defy.xyz:8545");
+const debugProvider = new JsonRpcProvider("https://ethereum.rpc.evmos.dev");
 
 export { debugProvider };

@@ -61,40 +61,35 @@ export default class Ethereum {
 
     static async fetchAssetMetadata(assets: string[]): Promise<Record<string, AssetMetadata>> {
         console.log("this is it2!");
-        // const ethcallProvider = new Provider();
-        // await ethcallProvider.init(provider);
-        // const calls = [];
-        // // Fetch asset metadata
-        // for (const assetAddress of assets) {
-        //     const assetContract = new Contract(assetAddress, erc20Abi);
-        //     const nameCall = assetContract.name();
-        //     const symbolCall = assetContract.symbol();
-        //     const decimalCall = assetContract.decimals();
-        //     calls.push(nameCall);
-        //     calls.push(symbolCall);
-        //     calls.push(decimalCall);
-        // }
+        const ethcallProvider = new Provider();
+        await ethcallProvider.init(provider);
+        const calls = [];
+        // Fetch asset metadata
+        for (const assetAddress of assets) {
+            const assetContract = new Contract(assetAddress, erc20Abi);
+            const nameCall = assetContract.name();
+            const symbolCall = assetContract.symbol();
+            const decimalCall = assetContract.decimals();
+            calls.push(nameCall);
+            calls.push(symbolCall);
+            calls.push(decimalCall);
+        }
         // Fetch data
-        //const data = await ethcallProvider.all(calls);
-        let addresses: string[] = [
-            "0x22F57E9556D78E51DB1dc8DD299361B0cf2F4c74",
-            "0x5b56858163b4412A23920c5C5A24889C3d9E1155",
-            "0x884CaF50DC26399b816F3BA1f64E7203E9a00D04"
-        ];
+        const data = await ethcallProvider.all(calls);
         const metadata: Record<string, AssetMetadata> = {};
-        for (let i = 0; i < addresses.length; i++) {
-            const assetAddress = addresses[i];
-            const name = "TOKEN" + (i + 1);
-            const symbol = "TOK" + (i + 1);
-            const decimals = 18;
+        for (let i = 0; i < assets.length; i++) {
+            const assetAddress = assets[i];
+            const name = data[3 * i];
+            const symbol = data[3 * i + 1];
+            const decimals = data[3 * i + 2];
             metadata[assetAddress] = {
-                address: addresses[i],
+                address: assetAddress,
                 name,
                 symbol,
                 decimals,
-                logoURI: undefined
+                logoURI: getAssetLogo(assetAddress),
             };
         }
-        return metadata;
+        return metadata;    
     }
 }

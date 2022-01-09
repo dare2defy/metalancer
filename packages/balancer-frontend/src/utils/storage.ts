@@ -171,8 +171,8 @@ function getPreferences(): Preferences {
                 outputAsset: '0x95DD164008C1E3f90C939013233fe6a2bee9f2EC',
             },
             9000: {
-		        inputAsset: "0x22F57E9556D78E51DB1dc8DD299361B0cf2F4c74",
-		        outputAsset: "0x884CaF50DC26399b816F3BA1f64E7203E9a00D04"
+		        inputAsset: "0x47AF69C820b672452a10FE2d04B78eEC026d0A99",
+		        outputAsset: "0x364A4FC192F13fB132767dAD3a2974E110995Bf9"
 	        }
         },
         list: 'balancer',

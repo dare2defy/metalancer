@@ -3,5 +3,6 @@ log.txt
 package-lock.json
 
 .idea
+yarn.lock
 packages/ethcall/package-lock.json
 node_modules

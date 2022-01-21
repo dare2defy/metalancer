@@ -267,9 +267,10 @@ Original Balancer uses SubGraph to fetch the list of pools. Because there are no
 
 ### Build 
 
-To build front-end run:
+To build front-end run (as of Jan 21, 2022):
 
 ```
+nvm use 14
 npm install --global lerna
 lerna bootstrap
 ```

@@ -1,6 +1,6 @@
 {
     "name": "Balancer",
-    "timestamp": "2022-01-08T13:52:19.292Z",
+    "timestamp": "2022-01-20T18:48:19.698Z",
     "logoURI": "https://raw.githubusercontent.com/balancer-labs/pebbles/master/images/pebbles-pad.256w.png",
     "keywords": [
         "balancer",
@@ -31,6 +31,13 @@
             "chainId": 9000,
             "name": "Token3",
             "symbol": "TOK3",
+            "decimals": 18
+        },
+        {
+            "address": "0x580E4DA821ce2B5AAA12eA513b343A04841D61d3",
+            "chainId": 9000,
+            "name": "Token4",
+            "symbol": "TOK4",
             "decimals": 18
         }
     ]

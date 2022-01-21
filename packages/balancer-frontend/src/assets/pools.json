@@ -35,6 +35,34 @@
                                "0x491d38073966A86d7FB2e21519C3d3C18bC51067"
                            ],
                            "totalWeight": "15"
-                       }
+                       },
+                       {
+                        "id": "0x78f7e47609a2e0c124681d179a9e781c8174853c",
+                        "publicSwap": "true",
+                        "swapFee": "0.003",
+                        "tokens": [
+                            {
+                                "address": "0x47AF69C820b672452a10FE2d04B78eEC026d0A99",
+                                "balance": "20",
+                                "decimals": "8",
+                                "denormWeight": "5",
+                                "id": "0x78f7e47609a2e0c124681d179a9e781c8174853c-0x47AF69C820b672452a10FE2d04B78eEC026d0A99",
+                                "symbol": "TOK1"
+                            },
+                            {
+                                "address": "0x580E4DA821ce2B5AAA12eA513b343A04841D61d3",
+                                "balance": "30",
+                                "decimals": "18",
+                                "denormWeight": "5",
+                                "id": "0x78f7e47609a2e0c124681d179a9e781c8174853c-0x580E4DA821ce2B5AAA12eA513b343A04841D61d3",
+                                "symbol": "TOK4"
+                            }
+                        ],
+                        "tokensList": [
+                            "0x47AF69C820b672452a10FE2d04B78eEC026d0A99",
+                            "0x580E4DA821ce2B5AAA12eA513b343A04841D61d3"
+                        ],
+                        "totalWeight": "15"
+                    }
   ]
 }

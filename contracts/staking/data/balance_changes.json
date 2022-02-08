@@ -1,0 +1,24 @@
+{
+    "data": {
+        "updated_at": "2022-01-16T18:39:28.587038422Z",
+        "items": [
+            {
+                "token_holder": "0xaa0fe1e5500b20615e51deb3b8e41e4c90e2acdc",
+                "prev_balance": "0",
+                "prev_block_height": 0,
+                "next_balance": "100000000000000000000",
+                "next_block_height": 692064,
+                "diff": "100000000000000000000"
+            }
+        ],
+        "pagination": {
+            "has_more": false,
+            "page_number": 0,
+            "page_size": 100,
+            "total_count": 1
+        }
+    },
+    "error": false,
+    "error_message": null,
+    "error_code": null
+}

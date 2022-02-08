@@ -1,0 +1,47 @@
+{
+    "network": "evmos",
+    "chainId": 9000,
+    "rpcUrl": "https://ethereum.rpc.evmos.dev",
+    "addresses": {
+      "merkleRedeem": "0x1Af053d7dfeca0af78443DB8B54a0414d614211f",
+      "multicall": "0x3121E9C65C15818f9d5a403C7776E55cfcF8Aee9"
+    },
+    "rewardToken": "MTG",
+    "reportsUrl": "https://github.com/balancer-labs/bal-mining-scripts/blob/master/reports-kovan",
+    "snapshotUrl": "https://raw.githubusercontent.com/balancer-labs/bal-mining-scripts/master/reports-kovan/_current.json",
+    "blockExplorerUrl": "https://kovan.etherscan.io",
+    "connectors": {
+      "injected": {
+        "id": "injected",
+        "name": "MetaMask"
+      },
+      "walletconnect": {
+        "id": "walletconnect",
+        "name": "WalletConnect",
+        "options": {
+          "infuraId": "93e3393c76ed4e1f940d0266e2fdbda2"
+        }
+      },
+      "portis": {
+        "id": "portis",
+        "name": "Portis",
+        "options": {
+          "network": "kovan",
+          "dappId": "3f1c3cfc-7dd5-4e8a-aa03-71ff7396d9fe"
+        }
+      },
+      "walletlink": {
+        "id": "walletlink",
+        "name": "Coinbase",
+        "options": {
+          "appName": "Pool management - Balancer",
+          "darkMode": true,
+          "chainId": 42,
+          "ethJsonrpcUrl": "https://eth-kovan.alchemyapi.io/v2/C467LJc7Aa761LLxlcxXvhIG9HzDTtKw"
+        }
+      }
+    },
+    "offset": 0,
+    "reportFilename": "_totals.json"
+  }
+  

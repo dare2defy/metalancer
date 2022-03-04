@@ -6,7 +6,7 @@ const fs = require("fs");
 const multicall = require("../abi/Multicall.json");
 const erc20 = require("../abi/ERC20.json");
 
-const evmosTestnetChainId = "9000"
+const evmosTestnetChainId = "9000";
 
 async function run() {
   try {
@@ -85,11 +85,13 @@ async function getNetworkMetadata(network, tokens, overwrite) {
   console.log("tokenlist :: getNetworkMetadata");
 
   const providers = {
-    "9000": new ethers.providers.JsonRpcProvider("https://ethereum.rpc.evmos.dev")
+    "9000": new ethers.providers.JsonRpcProvider(
+      "https://evmos-archive-testnet.api.bdnodes.net:8545"
+    )
   };
 
   const multicallContract = {
-    "9000": "0x3121E9C65C15818f9d5a403C7776E55cfcF8Aee9",
+    "9000": "0x8A662A03FBED26857033E7b4AEb6DF7e7CFE088E"
   };
 
   const provider = providers[network];
@@ -98,7 +100,7 @@ async function getNetworkMetadata(network, tokens, overwrite) {
   const multi = new ethers.Contract(multicallAddress, multicall.abi, provider);
   const calls = [];
   const erc20Contract = new ethers.utils.Interface(erc20.abi);
-  
+
   Object.keys(tokens).forEach(token => {
     calls.push([token, erc20Contract.encodeFunctionData("decimals", [])]);
     calls.push([token, erc20Contract.encodeFunctionData("symbol", [])]);

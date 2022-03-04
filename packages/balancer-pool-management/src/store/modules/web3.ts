@@ -276,6 +276,7 @@ const actions = {
     if (!state.account) return;
     // @ts-ignore
     const tokens = Object.entries(config.tokens).map(token => token[1].address);
+    console.log('loadAccount: tokens: ' + tokens);
     await dispatch('getProxy');
     await Promise.all([
       dispatch('getBalances', tokens),
@@ -333,6 +334,8 @@ const actions = {
       abi['Multicall'],
       provider
     );
+    console.log('multicall address: ' + multi.address);
+    console.log('my address: ' + address);
     const calls = [];
     const testToken = new Interface(abi.TestToken);
     const tokensToFetch = tokens
@@ -352,6 +355,7 @@ const actions = {
       balances.ether = ethBalance.toString();
       let i = 0;
       response.forEach(value => {
+        console.log('balanceOf result for ' + tokensToFetch[i] + ':' + value);
         if (tokensToFetch && tokensToFetch[i]) {
           const balanceNumber = testToken.decodeFunctionResult(
             'balanceOf',
@@ -362,8 +366,10 @@ const actions = {
         i++;
       });
       commit('GET_BALANCES_SUCCESS', balances);
+      console.log('getBalances success: ' + balances);
       return balances;
     } catch (e) {
+      console.log('getBalances failed: ' + e);
       commit('GET_BALANCES_FAILURE', e);
       return Promise.reject();
     }
@@ -423,10 +429,16 @@ const actions = {
         abi['DSProxyRegistry'],
         provider
       );
+      console.log(
+        'ds proxy registry address: ' + dsProxyRegistryContract.address
+      );
+      console.log('my address: ' + address);
       const proxy = await dsProxyRegistryContract.proxies(address);
       commit('GET_PROXY_SUCCESS', proxy);
+      console.log('getProxy success: ' + proxy);
       return proxy;
     } catch (e) {
+      console.log('getProxy failed: ' + e);
       commit('GET_PROXY_FAILURE', e);
       return Promise.reject(e);
     }

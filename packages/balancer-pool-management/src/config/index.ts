@@ -25,8 +25,8 @@ const registryRinkeby = {
 };
 const registryEvmosTestnet = {
   tokens: {
-    '0x47AF69C820b672452a10FE2d04B78eEC026d0A99': {
-      address: '0x47AF69C820b672452a10FE2d04B78eEC026d0A99',
+    '0x3fef4c7FDbC405C3A507E074779C50189a1e2C22': {
+      address: '0x3fef4c7FDbC405C3A507E074779C50189a1e2C22',
       id: 'tok1',
       name: 'TOK1',
       symbol: 'TOK1',
@@ -37,8 +37,8 @@ const registryEvmosTestnet = {
       logoUrl:
         'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png'
     },
-    '0x364A4FC192F13fB132767dAD3a2974E110995Bf9': {
-      address: '0x364A4FC192F13fB132767dAD3a2974E110995Bf9',
+    '0x802f53aFD50ebB03d17CAE8104779965FDe00034': {
+      address: '0x802f53aFD50ebB03d17CAE8104779965FDe00034',
       id: 'tok2',
       name: 'TOK2',
       symbol: 'TOK2',
@@ -49,8 +49,8 @@ const registryEvmosTestnet = {
       logoUrl:
         'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png'
     },
-    '0x491d38073966A86d7FB2e21519C3d3C18bC51067': {
-      address: '0x491d38073966A86d7FB2e21519C3d3C18bC51067',
+    '0x37cD3F04955fF3AC1b83fC565e58Fd42c2B7B5ED': {
+      address: '0x37cD3F04955fF3AC1b83fC565e58Fd42c2B7B5ED',
       id: 'tok3',
       name: 'TOK3',
       symbol: 'TOK3',

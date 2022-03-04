@@ -1,44 +1,41 @@
 {
-    "name": "Balancer",
-    "timestamp": "2022-01-20T18:48:19.698Z",
-    "logoURI": "https://raw.githubusercontent.com/balancer-labs/pebbles/master/images/pebbles-pad.256w.png",
-    "keywords": [
-        "balancer",
-        "default"
-    ],
-    "version": {
-        "major": 1,
-        "minor": 0,
-        "patch": 0
+  "name": "Balancer",
+  "timestamp": "2022-01-20T18:48:19.698Z",
+  "logoURI": "https://raw.githubusercontent.com/balancer-labs/pebbles/master/images/pebbles-pad.256w.png",
+  "keywords": ["balancer", "default"],
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "tokens": [
+    {
+      "address": "0x3fef4c7FDbC405C3A507E074779C50189a1e2C22",
+      "chainId": 9000,
+      "name": "Token1",
+      "symbol": "TOK1",
+      "decimals": 18
     },
-    "tokens": [
-        {
-            "address": "0x47AF69C820b672452a10FE2d04B78eEC026d0A99",
-            "chainId": 9000,
-            "name": "Token1",
-            "symbol": "TOK1",
-            "decimals": 18
-        },
-        {
-            "address": "0x364A4FC192F13fB132767dAD3a2974E110995Bf9",
-            "chainId": 9000,
-            "name": "Token2",
-            "symbol": "TOK2",
-            "decimals": 18
-        },
-        {
-            "address": "0x491d38073966A86d7FB2e21519C3d3C18bC51067",
-            "chainId": 9000,
-            "name": "Token3",
-            "symbol": "TOK3",
-            "decimals": 18
-        },
-        {
-            "address": "0x580E4DA821ce2B5AAA12eA513b343A04841D61d3",
-            "chainId": 9000,
-            "name": "Token4",
-            "symbol": "TOK4",
-            "decimals": 18
-        }
-    ]
+    {
+      "address": "0x802f53aFD50ebB03d17CAE8104779965FDe00034",
+      "chainId": 9000,
+      "name": "Token2",
+      "symbol": "TOK2",
+      "decimals": 18
+    },
+    {
+      "address": "0x37cD3F04955fF3AC1b83fC565e58Fd42c2B7B5ED",
+      "chainId": 9000,
+      "name": "Token3",
+      "symbol": "TOK3",
+      "decimals": 18
+    },
+    {
+      "address": "0x580E4DA821ce2B5AAA12eA513b343A04841D61d3",
+      "chainId": 9000,
+      "name": "Token4",
+      "symbol": "TOK4",
+      "decimals": 18
+    }
+  ]
 }

@@ -1,9 +1,9 @@
-import { AssetMetadata } from '@/config';
-import { Transaction } from '@/store/modules/account';
+import { AssetMetadata } from "@/config";
+import { Transaction } from "@/store/modules/account";
 
-const PREFERENCES = 'preferences';
-const TRANSACTIONS = 'transactions';
-const ASSETS = 'assets';
+const PREFERENCES = "preferences";
+const TRANSACTIONS = "transactions";
+const ASSETS = "assets";
 
 interface Preferences {
     connector: string | null;
@@ -44,13 +44,8 @@ export default class Storage {
 
     static getTransactions(account: string, chainId: number): Record<string, Transaction> {
         const transactionString = localStorage.getItem(TRANSACTIONS);
-        const transactions: Transactions = transactionString
-            ? JSON.parse(transactionString)
-            : {};
-        if (!transactions ||
-            !transactions[account] ||
-            !transactions[account][chainId]
-        ) {
+        const transactions: Transactions = transactionString ? JSON.parse(transactionString) : {};
+        if (!transactions || !transactions[account] || !transactions[account][chainId]) {
             return {};
         }
         return transactions[account][chainId];
@@ -58,9 +53,7 @@ export default class Storage {
 
     static getAssets(chainId: number): Record<string, AssetMetadata> {
         const assetString = localStorage.getItem(ASSETS);
-        const assets: Assets = assetString
-            ? JSON.parse(assetString)
-            : {};
+        const assets: Assets = assetString ? JSON.parse(assetString) : {};
         if (!assets[chainId]) {
             return {};
         }
@@ -104,9 +97,7 @@ export default class Storage {
 
     static saveTransaction(account: string, chainId: number, transaction: Transaction): void {
         const transactionString = localStorage.getItem(TRANSACTIONS);
-        const transactions: Transactions = transactionString
-            ? JSON.parse(transactionString)
-            : {};
+        const transactions: Transactions = transactionString ? JSON.parse(transactionString) : {};
         if (!transactions[account]) {
             transactions[account] = {};
         }
@@ -119,9 +110,7 @@ export default class Storage {
 
     static saveAssets(chainId: number, assets: Record<string, AssetMetadata>): void {
         const assetString = localStorage.getItem(ASSETS);
-        const assetList: Assets = assetString
-            ? JSON.parse(assetString)
-            : {};
+        const assetList: Assets = assetString ? JSON.parse(assetString) : {};
         if (!assetList[chainId]) {
             assetList[chainId] = {};
         }
@@ -159,29 +148,29 @@ function getPreferences(): Preferences {
         slippage: 0.01,
         pairs: {
             1: {
-                inputAsset: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-                outputAsset: '0xba100000625a3754423978a60c9317c58a424e3D',
+                inputAsset: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+                outputAsset: "0xba100000625a3754423978a60c9317c58a424e3D"
             },
             42: {
-                inputAsset: '0x1528F3FCc26d13F7079325Fb78D9442607781c8C',
-                outputAsset: '0xef13C0c8abcaf5767160018d268f9697aE4f5375',
+                inputAsset: "0x1528F3FCc26d13F7079325Fb78D9442607781c8C",
+                outputAsset: "0xef13C0c8abcaf5767160018d268f9697aE4f5375"
             },
             1337: {
-                inputAsset: '0xdAe147580D673E8A8845776af3e80f4b28a7a69a',
-                outputAsset: '0x95DD164008C1E3f90C939013233fe6a2bee9f2EC',
+                inputAsset: "0xdAe147580D673E8A8845776af3e80f4b28a7a69a",
+                outputAsset: "0x95DD164008C1E3f90C939013233fe6a2bee9f2EC"
             },
             9000: {
-		        inputAsset: "0x47AF69C820b672452a10FE2d04B78eEC026d0A99",
-		        outputAsset: "0x364A4FC192F13fB132767dAD3a2974E110995Bf9"
-	        }
+                inputAsset: "0x3fef4c7FDbC405C3A507E074779C50189a1e2C22",
+                outputAsset: "0x802f53aFD50ebB03d17CAE8104779965FDe00034"
+            }
         },
-        list: 'balancer',
-        darkmode: true,
+        list: "balancer",
+        darkmode: true
     };
     const preferenceString = localStorage.getItem(PREFERENCES);
-    const preferences = JSON.parse(preferenceString || '{}');
+    const preferences = JSON.parse(preferenceString || "{}");
     return {
         ...defaultPreferences,
-        ...preferences,
+        ...preferences
     };
 }

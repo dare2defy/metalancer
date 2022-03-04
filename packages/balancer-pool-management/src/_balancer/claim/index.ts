@@ -35,7 +35,7 @@ export const constants = {
       'https://storageapi.fleek.co/balancer-team-bucket/balancer-claim-kovan/snapshot'
   },
   9000: {
-    merkleRedeem: '0x1Af053d7dfeca0af78443DB8B54a0414d614211f'
+    merkleRedeem: '0x35563ABFcf1eb86c07e133502A421839bB8C5579'
   }
 };
 

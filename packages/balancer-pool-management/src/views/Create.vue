@@ -618,8 +618,6 @@ export default {
       return this.type === 'SHARED_POOL' || !this.crp.rights.canChangeWeights;
     },
     getPercentage(token) {
-      console.log('total weight =  ' + this.totalWeight);
-      console.log('token weight = ' + this.weights[token]);
       return this.totalWeight === 0
         ? 0
         : (this.weights[token] / this.totalWeight) * 100;
@@ -637,9 +635,7 @@ export default {
     },
     isDenormValid(token) {
       const percentage = this.getPercentage(token);
-      console.log('denorm_debug: percentage' + percentage);
       const denorm = getDenorm(percentage, this.isSharedOrLocked());
-      console.log('denorm_debug: ' + denorm);
       return isValidDenormValue(denorm);
     },
     isPercentValid(token) {

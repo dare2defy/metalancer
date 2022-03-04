@@ -2,20 +2,20 @@
   "network": "evmostTestnet",
   "chainId": 9000,
   "defaultPrecision": 6,
-  "rpcUrl": "https://ethereum.rpc.evmos.dev",
-  "wsUrl": "wss://ethereum.wss.evmos.dev",
+  "rpcUrl": "https://evmos-archive-testnet.api.bdnodes.net:8545",
+  "wsUrl": "wss://evmos-archive-testnet.api.bdnodes.net:8545",
   "subgraphUrl": "http://134.209.83.177:8000/subgraphs/name/balancer-labs/balancer-subgraph",
   "explorer": "https://explorer.evmos.org/",
   "exchangeUrl": "https://balancer.exchange",
   "addresses": {
-    "bFactory": "0xD4140D93f5F7e9e8e05E0ac9f925B64fC4c94825",
+    "bFactory": "0xB8D12Ce829Cb0482f730D3C0FD6A203E029056EE",
     "bActions": "0xde4A25A0b9589689945d842c5ba0CF4f0D4eB3ac",
     "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
-    "dsProxyRegistry": "0x4FDad395dBf599926c13c658fBA2203d85B1c222",
-    "proxy": "0xd8c2Bba8eEdc05bEBF460A06C5B69C09fbEab3AE",
-    "crpFactory": "0xed52D8E202401645eDAD1c0AA21e872498ce47D0",
-    "weth": "0xDAd8af7941572d7fC5585b9751B64A6b6D7F50b1",
-    "multicall": "0x3121E9C65C15818f9d5a403C7776E55cfcF8Aee9"
+    "dsProxyRegistry": "0x3eC70A6F631463d65Eb638A9B70797B15db5c8Be",
+    "proxy": "0xb8430ceA27c2705023aB789Ed425F80B25F5296d",
+    "crpFactory": "0xEA40c1ebd9b386Dc46823D2b25f40711626FD6D3",
+    "weth": "0x4644840C62298A97f667bE74c5cd48d799B38946",
+    "multicall": "0x8A662A03FBED26857033E7b4AEb6DF7e7CFE088E"
   },
   "connectors": {
     "injected": {},

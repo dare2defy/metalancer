@@ -324,6 +324,7 @@ function calculateJoinPoolAmount(amounts: string[], poolData) {
 }
 
 export function getNewPool(address: string) {
+  console.log('migration of pool: ' + address);
   return pools[config.chainId][address.toLowerCase()];
 }
 

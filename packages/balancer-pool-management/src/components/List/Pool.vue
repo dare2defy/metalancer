@@ -42,17 +42,17 @@
       format="currency"
       class="column hide-sm hide-md hide-lg"
     />
-    <div v-if="migratable" class="column hide-sm hide-md hide-lg">
-      <router-link :to="{ name: 'migrate', params: { id: pool.id } }">
-        <button
-          class="button-migrate"
-          :class="{ primary: canMigrate }"
-          v-if="canMigrate"
-        >
-          V2 Migrate
-        </button>
-      </router-link>
-    </div>
+    <!--    <div v-if="migratable" class="column hide-sm hide-md hide-lg">-->
+    <!--      <router-link :to="{ name: 'migrate', params: { id: pool.id } }">-->
+    <!--        <button-->
+    <!--          class="button-migrate"-->
+    <!--          :class="{ primary: canMigrate }"-->
+    <!--          v-if="canMigrate"-->
+    <!--        >-->
+    <!--          V2 Migrate-->
+    <!--        </button>-->
+    <!--      </router-link>-->
+    <!--    </div>-->
   </UiTableTr>
 </template>
 

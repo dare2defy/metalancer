@@ -517,12 +517,12 @@ export default {
       this.handleAmountChange(tokenAddress);
     },
     handleAmountChange(tokenAddress) {
-      const tokenPrice = this.price.values[tokenAddress];
-      if (!tokenPrice) {
-        return;
-      }
-      const tokenValue = bnum(this.amounts[tokenAddress]).times(tokenPrice);
-      const totalValue = tokenValue.div(this.weights[tokenAddress]);
+      // const tokenPrice = this.price.values[tokenAddress];
+      // if (!tokenPrice) {
+      //   return;
+      // }
+      // const tokenValue = bnum(this.amounts[tokenAddress]).times(tokenPrice);
+      // const totalValue = tokenValue.div(this.weights[tokenAddress]);
 
       this.totalWeight = this.tokens.reduce((acc, token) => {
         const weight = parseFloat(this.weights[token]);
@@ -534,17 +534,17 @@ export default {
           continue;
         }
         const tokenWeight = bnum(this.weights[token] || '');
-        if (totalValue.isNaN() || tokenWeight.isNaN()) {
-          Vue.set(this.amounts, token, '');
-          continue;
-        }
-        const tokenPrice = this.price.values[token];
-        if (!tokenPrice) {
-          continue;
-        }
-        const tokenValue = tokenWeight.times(totalValue);
-        const tokenAmount = tokenValue.div(tokenPrice);
-        Vue.set(this.amounts, token, tokenAmount.toString());
+        // if (totalValue.isNaN() || tokenWeight.isNaN()) {
+        //   Vue.set(this.amounts, token, '');
+        //   continue;
+        // }
+        // const tokenPrice = this.price.values[token];
+        // if (!tokenPrice) {
+        //   continue;
+        // }
+        // const tokenValue = tokenWeight.times(totalValue);
+        // const tokenAmount = tokenValue.div(tokenPrice);
+        // Vue.set(this.amounts, token, tokenAmount.toString());
       }
     },
     isWeightInputValid(tokenAddress) {
@@ -618,7 +618,9 @@ export default {
       return this.type === 'SHARED_POOL' || !this.crp.rights.canChangeWeights;
     },
     getPercentage(token) {
-      return this.totalWeight == 0
+      console.log('total weight =  ' + this.totalWeight);
+      console.log('token weight = ' + this.weights[token]);
+      return this.totalWeight === 0
         ? 0
         : (this.weights[token] / this.totalWeight) * 100;
     },
@@ -634,11 +636,10 @@ export default {
       ).toFixed(3)}`;
     },
     isDenormValid(token) {
-      const denorm = getDenorm(
-        this.getPercentage(token),
-        this.isSharedOrLocked()
-      );
-
+      const percentage = this.getPercentage(token);
+      console.log('denorm_debug: percentage' + percentage);
+      const denorm = getDenorm(percentage, this.isSharedOrLocked());
+      console.log('denorm_debug: ' + denorm);
       return isValidDenormValue(denorm);
     },
     isPercentValid(token) {

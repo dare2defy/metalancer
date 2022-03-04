@@ -9,7 +9,7 @@
   "addresses": {
     "bFactory": "0xD4140D93f5F7e9e8e05E0ac9f925B64fC4c94825",
     "bActions": "0xde4A25A0b9589689945d842c5ba0CF4f0D4eB3ac",
-    "dsProxyRegistry": "0xf3E2B20483aFd29c36FD1B372040E6e4a8e67B9D",
+    "dsProxyRegistry": "0x4FDad395dBf599926c13c658fBA2203d85B1c222",
     "exchangeProxy": "0xd8c2Bba8eEdc05bEBF460A06C5B69C09fbEab3AE",
     "weth": "0xDAd8af7941572d7fC5585b9751B64A6b6D7F50b1",
     "multicall": "0x3121E9C65C15818f9d5a403C7776E55cfcF8Aee9"

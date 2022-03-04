@@ -40,7 +40,7 @@ export default class Ethereum {
         const dsProxyRegistryAddress = config.addresses.dsProxyRegistry;
         const dsProxyRegistryContract = new Contract(dsProxyRegistryAddress, dsProxyRegistryAbi);
         const proxyCall = dsProxyRegistryContract.proxies(address);
-        // calls.push(proxyCall);
+        calls.push(proxyCall);
         // Fetch data
         const data = await ethcallProvider.all(calls);
         const assetCount = assets.length;
@@ -87,9 +87,9 @@ export default class Ethereum {
                 name,
                 symbol,
                 decimals,
-                logoURI: getAssetLogo(assetAddress),
+                logoURI: getAssetLogo(assetAddress)
             };
         }
-        return metadata;    
+        return metadata;
     }
 }

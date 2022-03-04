@@ -17,15 +17,27 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: {
-    version: "0.5.12",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 1000,
+  solidity: {compilers: [ 
+    {
+      version: "0.5.12",
+      settings: {
+        optimizer: {
+          enabled: true,
+          runs: 10,
+        },
       },
     },
-  },
+    {
+      version: "0.6.12",
+      settings: {
+        optimizer: {
+          enabled: true,
+          runs: 10,
+        },
+      },
+    }
+
+]},
     networks: {
       ropsten: {
         url: process.env.ROPSTEN_URL || "",
@@ -55,7 +67,17 @@ module.exports = {
           '0x12b7dfcab9ea3a13d46357219aa393fe8d722ba72987304ec396594486a9200f',
         ]
       
-      }
+      },
+      evmos_test2: {
+        url: "https://evmos-archive-testnet.api.bdnodes.net:8545",
+        accounts: [
+          '0x12b7dfcab9ea3a13d46357219aa393fe8d722ba72987304ec396594486a9200f', //0xAa0FE1e5500b20615e51deB3b8E41E4c90e2AcDC
+          '0x571f3e01171a4db5886b9e3fa4d5c6a726eef2e3dc97d6cd34dd85e6335ef9c0',
+        ]
+      
+      },
+
+      
 
       
     },

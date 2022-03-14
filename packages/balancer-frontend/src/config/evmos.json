@@ -8,7 +8,7 @@
   "subgraphBackupUrl": "/src/assets/pools.json",
   "addresses": {
     "bFactory": "0xB8D12Ce829Cb0482f730D3C0FD6A203E029056EE",
-    "bActions": "0xde4A25A0b9589689945d842c5ba0CF4f0D4eB3ac",
+    "bActions": "0x71D98c5B3d72f493592C691Cb5971AEdBF51dcff",
     "dsProxyRegistry": "0x3eC70A6F631463d65Eb638A9B70797B15db5c8Be",
     "exchangeProxy": "0xb8430ceA27c2705023aB789Ed425F80B25F5296d",
     "weth": "0x4644840C62298A97f667bE74c5cd48d799B38946",

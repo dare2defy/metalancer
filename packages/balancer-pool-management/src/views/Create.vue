@@ -251,8 +251,8 @@ export default {
   },
   created() {
     // Initialize an (arbitrary) two-token pool, with weights
-    const dai = getTokenBySymbol('DAI').address;
-    const usdc = getTokenBySymbol('USDC').address;
+    const dai = getTokenBySymbol('TOK1').address;
+    const usdc = getTokenBySymbol('TOK2').address;
     this.tokens = [dai, usdc];
     // weights contain percentage values - denorms are calculated later
     Vue.set(this.weights, dai, '60');

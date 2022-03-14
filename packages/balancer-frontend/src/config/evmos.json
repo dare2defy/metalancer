@@ -4,7 +4,7 @@
   "precision": 6,
   "infuraKey": "n/a",
   "alchemyKey": "n/a",
-  "subgraphUrl": "/src/assets/pools.json",
+  "subgraphUrl": "http://134.209.83.177:8000/subgraphs/name/balancer-labs/balancer-subgraph",
   "subgraphBackupUrl": "/src/assets/pools.json",
   "addresses": {
     "bFactory": "0xB8D12Ce829Cb0482f730D3C0FD6A203E029056EE",
